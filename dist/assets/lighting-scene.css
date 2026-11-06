@@ -1,4 +1,21 @@
-.hero.hero-project { padding-top: clamp(52px, 6vw, 92px); }
+.hero.hero-project {
+  --hero-shadow: #241915;
+  padding-top: clamp(52px, 6vw, 92px);
+  background: var(--hero-shadow);
+}
+
+.hero-project > .eyebrow,
+.hero-project .hero-copy p,
+.hero-project .strip { color: #e1d2c5; }
+
+.hero-project .trust-placeholder { color: #c9b6a6; }
+.hero-project .dot { background: #e0ac73; }
+.hero-project .strip svg { color: #e8b985; }
+
+.hero-project .hero-copy > .button {
+  color: #332118;
+  background: #f4d8b1;
+}
 
 .hero-project-photo {
   position: absolute;
@@ -21,8 +38,8 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, #081a35, transparent 37%),
-    linear-gradient(0deg, #081a35, transparent 26%);
+    linear-gradient(90deg, var(--hero-shadow), transparent 37%),
+    linear-gradient(0deg, var(--hero-shadow), transparent 26%);
 }
 
 .hero-project-photo figcaption {
@@ -30,9 +47,9 @@
   z-index: 1;
   right: 8%;
   bottom: 16px;
-  color: #e3ebf5;
+  color: #f2e5d8;
   font-size: 11px;
-  text-shadow: 0 1px 4px #081a35;
+  text-shadow: 0 1px 4px var(--hero-shadow);
 }
 
 .hero-project .hero-top {
@@ -46,7 +63,7 @@
 @media (max-width: 800px) {
   .hero.hero-project { padding-top: clamp(228px, 48vw, 370px); }
   .hero-project-photo { inset: 0 0 auto; height: clamp(221px, 47vw, 360px); }
-  .hero-project-photo::after { background: linear-gradient(0deg, #081a35, transparent 38%); }
+  .hero-project-photo::after { background: linear-gradient(0deg, var(--hero-shadow), transparent 38%); }
   .hero-project-photo figcaption { right: 5%; bottom: 12px; }
   .hero-project .hero-top { max-width: none; }
   .hero-project .hero-copy { margin-top: 18px; }
@@ -58,7 +75,17 @@
   .service:hover .service-image { transform: scale(1.012); }
 }
 
+@keyframes chandelier-brighten {
+  0% { filter: brightness(.65) saturate(.83); }
+  75% { filter: brightness(1.12) saturate(1.05); }
+  100% { filter: brightness(1) saturate(1); }
+}
+
 @media (prefers-reduced-motion: no-preference) {
+  .hero-project-photo img.is-lighting-up {
+    animation: chandelier-brighten 1.65s cubic-bezier(.32,.03,.2,1) 120ms both;
+  }
+
   .reveal-card { transition: opacity 600ms ease, transform 650ms cubic-bezier(.2,.75,.3,1); }
   .reveal-card.is-pending:not(:focus-within) { opacity: .24; transform: translateY(18px); }
 }
