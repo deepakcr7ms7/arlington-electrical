@@ -1,72 +1,56 @@
-.hero[data-lit] {
-  --ceiling-space: clamp(156px, 20.5vw, 300px);
-  padding-top: var(--ceiling-space);
+.hero.hero-project { padding-top: clamp(52px, 6vw, 92px); }
+
+.hero-project-photo {
+  position: absolute;
+  inset: 0 0 80px 39%;
+  margin: 0;
+  z-index: -1;
+  overflow: hidden;
 }
 
-.hero[data-lit]::before {
+.hero-project-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
+}
+
+.hero-project-photo::after {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: -1;
   background:
-    linear-gradient(180deg, transparent 12%, #081a3559 var(--ceiling-space), #081a35 98%),
-    url("/assets/honeycomb-hero.webp") center top / max(580px, 100%) auto no-repeat;
-  transition: opacity 700ms ease, filter 700ms ease;
+    linear-gradient(90deg, #081a35, transparent 37%),
+    linear-gradient(0deg, #081a35, transparent 26%);
 }
 
-.hero[data-lit="false"]::before {
-  opacity: .2;
-  filter: brightness(.35);
+.hero-project-photo figcaption {
+  position: absolute;
+  z-index: 1;
+  right: 8%;
+  bottom: 16px;
+  color: #e3ebf5;
+  font-size: 11px;
+  text-shadow: 0 1px 4px #081a35;
 }
 
-.hero-lighting-control {
-  display: flex;
-  justify-content: flex-end;
-  border-bottom: 1px solid #ffffff24;
-}
-
-.hero-lighting-control .light-switch {
-  display: inline-flex;
-  align-items: center;
-  min-height: 48px;
-  padding: 0 2px;
-  background: none;
-  border: 0;
-  cursor: pointer;
-  color: #e2ecf8;
-  gap: 12px;
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.hero-lighting-control .switch-track {
+.hero-project .hero-top {
   display: block;
-  border-radius: 20px;
-  padding: 4px;
-  transition: background 300ms ease;
-  width: 46px;
-  height: 26px;
-  background: #435771;
+  max-width: 54%;
 }
 
-.hero-lighting-control .switch-thumb {
-  display: block;
-  border-radius: 50%;
-  background: #fff;
-  transition: transform 300ms ease;
-  width: 18px;
-  height: 18px;
-}
-
-.hero-lighting-control .light-switch[aria-checked="true"] .switch-track { background: #3a6594; }
-.hero-lighting-control .light-switch[aria-checked="true"] .switch-thumb {
-  transform: translateX(20px);
-  background: #fff;
-}
+.hero-project .hero-copy { margin: 24px 0 0; }
+.hero-project .strip { margin-top: 36px; }
 
 @media (max-width: 800px) {
-  .hero[data-lit] { --ceiling-space: clamp(118px, 20.5vw, 164px); }
-  .hero-lighting-control { justify-content: flex-start; }
+  .hero.hero-project { padding-top: clamp(228px, 48vw, 370px); }
+  .hero-project-photo { inset: 0 0 auto; height: clamp(221px, 47vw, 360px); }
+  .hero-project-photo::after { background: linear-gradient(0deg, #081a35, transparent 38%); }
+  .hero-project-photo figcaption { right: 5%; bottom: 12px; }
+  .hero-project .hero-top { max-width: none; }
+  .hero-project .hero-copy { margin-top: 18px; }
+  .hero-project .strip { margin-top: 8px; }
 }
 
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
@@ -77,8 +61,4 @@
 @media (prefers-reduced-motion: no-preference) {
   .reveal-card { transition: opacity 600ms ease, transform 650ms cubic-bezier(.2,.75,.3,1); }
   .reveal-card.is-pending:not(:focus-within) { opacity: .24; transform: translateY(18px); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero[data-lit]::before, .switch-track, .switch-thumb { transition: none; }
 }
