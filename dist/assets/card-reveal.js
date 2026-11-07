@@ -27,6 +27,29 @@ if (heroVideo && videoToggle && !reducedMotion.matches) {
   });
 }
 
+const hero = document.querySelector('.hero-project');
+
+if (hero && !reducedMotion.matches) {
+  let pendingFrame = false;
+
+  function updateHeroScroll() {
+    pendingFrame = false;
+    const distance = -hero.getBoundingClientRect().top;
+    const progress = Math.min(1, Math.max(0, distance / hero.offsetHeight));
+    hero.style.setProperty('--hero-shift', `${progress * Math.min(hero.offsetHeight * .025, 24)}px`);
+    hero.style.setProperty('--hero-shade', String(.22 + progress * .32));
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!pendingFrame) {
+      pendingFrame = true;
+      requestAnimationFrame(updateHeroScroll);
+    }
+  }, { passive: true });
+
+  updateHeroScroll();
+}
+
 if ('IntersectionObserver' in window && !reducedMotion.matches) {
   const observer = new IntersectionObserver(entries => {
     for (const entry of entries) {
@@ -35,9 +58,9 @@ if ('IntersectionObserver' in window && !reducedMotion.matches) {
         observer.unobserve(entry.target);
       }
     }
-  });
+  }, { threshold: .12 });
 
-  for (const card of document.querySelectorAll('.service, .step, .cta-box')) {
+  for (const card of document.querySelectorAll('.service, .process > div:first-child, .step, .cta-box')) {
     if (card.getBoundingClientRect().top > window.innerHeight) {
       card.classList.add('reveal-card', 'is-pending');
       observer.observe(card);
