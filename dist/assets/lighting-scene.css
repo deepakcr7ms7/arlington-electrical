@@ -213,6 +213,7 @@ dialog::backdrop { background: #051124bb; backdrop-filter: blur(5px); }
   .trust-grid { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 540px) {
+  .hero-media img, .hero-media video { object-position: 54% center; }
   .hero-bottom { align-items: flex-start; flex-direction: column; gap: 12px; }
   .reel-controls { align-self: flex-end; }
   .intro-heading { font-size: clamp(2rem, 8vw, 2.7rem); }
