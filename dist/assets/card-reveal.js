@@ -62,6 +62,7 @@ const gallery = document.querySelector('.project-carousel');
 const stage = gallery.querySelector('.project-stage');
 const slides = Array.from(stage.querySelectorAll('img'));
 const dots = Array.from(gallery.querySelectorAll('[data-project]'));
+const photoLabels = gallery.querySelector('.project-photo-labels');
 let active = 0;
 
 function showProject(index) {
@@ -84,6 +85,8 @@ function showProject(index) {
   const formatIndex = value => String(value).padStart(2, '0');
   gallery.querySelector('.project-index').textContent = `${formatIndex(active + 1)} / ${formatIndex(slides.length)}`;
   gallery.querySelector('.project-title').textContent = dots[active].getAttribute('aria-label');
+  gallery.querySelector('.project-description').textContent = dots[active].dataset.description;
+  photoLabels.hidden = !slides[active].hasAttribute('data-panel');
 }
 
 let swipeStart;

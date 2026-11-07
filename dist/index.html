@@ -37,8 +37,12 @@
       <h1><span class="headline-mask"><span>Good work.</span></span> <span class="headline-mask"><span>Brighter spaces.</span></span></h1>
       <div class="hero-bottom hero-enter">
         <div>
-          <p>Lighting, power, and electrical work for homes and businesses.</p>
-          <button class="pill light" type="button" data-estimate>Get a free estimate <span aria-hidden="true">↗</span></button>
+          <p class="hero-description">Lighting, power, and electrical work for homes and businesses.</p>
+          <div class="hero-actions">
+            <button class="pill light" type="button" data-estimate>Get a free estimate <span aria-hidden="true">↗</span></button>
+            <a class="hero-call" href="tel:+16312630792">Call Arlington</a>
+          </div>
+          <p class="hero-trust">Family-owned <span aria-hidden="true">·</span> Licensed &amp; insured</p>
         </div>
         <div class="reel-controls">
           <span>Arlington project reel</span>
@@ -51,49 +55,54 @@
     </div>
   </section>
   <section class="work section-pad" id="work" aria-labelledby="work-heading">
-    <div class="section-top reveal">
+    <div class="section-top">
       <p class="kicker">01 / Selected work</p>
       <div><h2 id="work-heading">See the difference.</h2><p>A closer look at Arlington’s lighting and electrical installations.</p></div>
     </div>
-    <div class="project-carousel reveal" aria-label="Arlington project gallery">
+    <div class="project-carousel" aria-label="Arlington project gallery">
       <div class="project-heading" aria-live="polite" aria-atomic="true">
         <span class="project-index">01 / 04</span>
         <h3 class="project-title">Chandelier installation</h3>
+        <p class="project-description">Starburst chandeliers mounted at staggered heights.</p>
       </div>
-      <div class="project-stage">
+      <div class="project-stage reveal">
         <img data-position="current" src="/assets/arlington-chandelier.webp" alt="Starburst chandeliers beneath a bronze ceiling">
         <img data-position="next" src="/assets/arlington-honeycomb.webp" alt="Honeycomb LED fixtures installed overhead" loading="lazy" aria-hidden="true">
         <img data-position="off" src="/assets/arlington-exterior.webp" alt="Exterior lighting illuminating a home at night" loading="lazy" aria-hidden="true">
-        <img data-position="previous" src="/assets/arlington-panel-pair.webp" alt="Two views of panel wiring and breaker work in progress" loading="lazy" aria-hidden="true">
+        <img data-position="previous" data-panel src="/assets/arlington-panel-pair.webp" alt="Rough-in wiring on the left and a close-up of the breaker panel on the right" loading="lazy" aria-hidden="true">
+      </div>
+      <div class="project-photo-labels" hidden>
+        <span>Rough-in wiring</span>
+        <span>Breaker panel close-up</span>
       </div>
       <div class="project-controls">
         <button class="icon-button" type="button" data-project-step="-1" aria-label="Previous project">←</button>
         <div class="project-dots" aria-label="Choose a project">
-          <button type="button" data-project="0" aria-label="Chandelier installation" aria-current="true"></button>
-          <button type="button" data-project="1" aria-label="Honeycomb ceiling lighting"></button>
-          <button type="button" data-project="2" aria-label="Exterior lighting"></button>
-          <button type="button" data-project="3" aria-label="Panel work in progress"></button>
+          <button type="button" data-project="0" aria-label="Chandelier installation" data-description="Starburst chandeliers mounted at staggered heights." aria-current="true"></button>
+          <button type="button" data-project="1" aria-label="Honeycomb ceiling lighting" data-description="Interlocking LED fixtures installed across a garage ceiling."></button>
+          <button type="button" data-project="2" aria-label="Exterior lighting" data-description="Exterior fixtures illuminate the front of the home after dark."></button>
+          <button type="button" data-project="3" aria-label="Panel work in progress" data-description="Two views of the wiring behind the walls."></button>
         </div>
         <button class="icon-button" type="button" data-project-step="1" aria-label="Next project">→</button>
       </div>
     </div>
   </section>
   <section class="services section-pad surface" id="services" aria-labelledby="services-heading">
-    <div class="service-intro reveal"><p class="kicker">02 / What we do</p><h2 id="services-heading">Electrical work<br>for every space.</h2><p>From a single fixture to the wiring behind a renovation.</p></div>
+    <div class="service-intro"><p class="kicker">02 / What we do</p><h2 id="services-heading">Electrical work<br>for every space.</h2><p>From a single fixture to the wiring behind a renovation.</p></div>
     <div class="service-list">
-      <details class="reveal" name="services" open>
+      <details name="services" open>
         <summary><span class="number">01</span><h3>Lighting, inside &amp; out</h3><span class="service-indicator" aria-hidden="true"></span></summary>
         <div class="service-body"><p>Recessed lighting, pendants, chandeliers, accent LEDs, and outdoor fixtures.</p><button type="button" class="text-button" data-estimate="Indoor lighting">Discuss a lighting project ↗</button></div>
       </details>
-      <details class="reveal" name="services">
+      <details name="services">
         <summary><span class="number">02</span><h3>Outlets &amp; switches</h3><span class="service-indicator" aria-hidden="true"></span></summary>
         <div class="service-body"><p>New outlets and switches, replacements, and wiring for a layout that fits how you use the space.</p><button type="button" class="text-button" data-estimate="Outlets & switches">Discuss outlets and switches ↗</button></div>
       </details>
-      <details class="reveal" name="services">
+      <details name="services">
         <summary><span class="number">03</span><h3>Panels &amp; wiring</h3><span class="service-indicator" aria-hidden="true"></span></summary>
         <div class="service-body"><p>Panel work, circuit additions, and electrical rough-ins for new builds and renovations.</p><button type="button" class="text-button" data-estimate="Panel work">Discuss panel work ↗</button></div>
       </details>
-      <details class="reveal" name="services">
+      <details name="services">
         <summary><span class="number">04</span><h3>TV &amp; entertainment</h3><span class="service-indicator" aria-hidden="true"></span></summary>
         <div class="service-body"><p>TV mounting and wiring for clean, practical home entertainment setups.</p><button type="button" class="text-button" data-estimate="TV & entertainment setup">Discuss a TV setup ↗</button></div>
       </details>
@@ -104,14 +113,14 @@
       <figure><img src="/assets/arlington-panel-pair.webp" alt="Arlington panel wiring and breaker work in progress" loading="lazy"><figcaption>Panel &amp; rough-in work</figcaption></figure>
       <figure><img src="/assets/arlington-kitchen-lighting.jpeg" alt="Arlington kitchen lighting with three pendant fixtures" loading="lazy"><figcaption>Kitchen lighting</figcaption></figure>
     </div>
-    <div class="process-copy reveal"><p class="kicker">03 / Our approach</p><h2 id="process-heading">From first call<br>to lights on.</h2>
+    <div class="process-copy"><p class="kicker">03 / Our approach</p><h2 id="process-heading">From first call<br>to lights on.</h2>
       <ol><li>Tell us what you’re working on.</li><li>Get a clear plan and estimate.</li><li>Set a time to get the work underway.</li></ol>
       <button type="button" class="pill" data-estimate>Talk through your project <span aria-hidden="true">↗</span></button>
     </div>
   </section>
   <section class="trust dark section-pad" aria-label="About Arlington Electrical">
-    <p class="kicker reveal">04 / Arlington Electrical</p>
-    <div class="trust-grid reveal">
+    <p class="kicker">04 / Arlington Electrical</p>
+    <div class="trust-grid">
       <div><strong>Family owned</strong><span>And operated</span></div>
       <div><strong>Licensed</strong><span>And insured</span></div>
       <div><strong>Homes &amp; businesses</strong><span>Residential and commercial</span></div>
@@ -119,7 +128,7 @@
     </div>
   </section>
   <footer class="footer dark section-pad" id="contact">
-    <div class="footer-main reveal">
+    <div class="footer-main">
       <div><p class="kicker">Have a project in mind?</p><h2>Let’s talk.</h2></div>
       <div><button type="button" class="pill light" data-estimate>Get a free estimate <span aria-hidden="true">↗</span></button><a href="tel:+16312630792">631-263-0792</a><a href="mailto:Eyan@Arlingtonlightandpower.com">Eyan@Arlingtonlightandpower.com</a></div>
     </div>
