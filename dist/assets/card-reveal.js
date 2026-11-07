@@ -5,12 +5,12 @@ const videoToggle = document.querySelector('.hero-video-toggle');
 if (heroVideo && videoToggle && !reducedMotion.matches) {
   heroVideo.addEventListener('playing', () => {
     heroVideo.classList.add('is-playing');
-    videoToggle.textContent = 'Pause video';
+    videoToggle.setAttribute('aria-label', 'Pause video');
     videoToggle.hidden = false;
   });
 
   heroVideo.addEventListener('pause', () => {
-    videoToggle.textContent = 'Play video';
+    videoToggle.setAttribute('aria-label', 'Play video');
   });
 
   videoToggle.addEventListener('click', () => {

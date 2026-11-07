@@ -51,15 +51,34 @@
   z-index: 2;
   right: 5%;
   top: 16px;
-  min-height: 44px;
-  padding: 0 14px;
-  border: 1px solid #b5d1ef80;
-  border-radius: 999px;
-  background: #081a35ed;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
   color: #e7f1ff;
-  font-size: 12px;
   cursor: pointer;
 }
+
+.hero-video-toggle::before,
+.hero-video-toggle svg { grid-area: 1 / 1; }
+
+.hero-video-toggle::before {
+  content: "";
+  width: 28px;
+  height: 28px;
+  border: 1px solid #b5d1ef80;
+  border-radius: 50%;
+  background: #081a35de;
+}
+
+.hero-video-toggle svg { position: relative; }
+.hero-video-toggle:hover::before { background: #112c50; }
+.hero-video-toggle .pause-icon,
+.hero-video-toggle[aria-label="Pause video"] .play-icon { display: none; }
+.hero-video-toggle[aria-label="Pause video"] .pause-icon { display: inline; }
 
 .hero-project-photo figcaption {
   position: absolute;
