@@ -59,36 +59,47 @@ if (!reducedMotion.matches) {
 }
 
 const gallery = document.querySelector('.project-carousel');
-const slides = Array.from(gallery.querySelectorAll('.project-images img'));
+const stage = gallery.querySelector('.project-stage');
+const slides = Array.from(stage.querySelectorAll('img'));
 const dots = Array.from(gallery.querySelectorAll('[data-project]'));
-const ghost = gallery.querySelector('.ghost-words');
-const ghostWords = [
-  ['Built', 'to', 'light', 'up'],
-  ['Light', 'in', 'every', 'line'],
-  ['After', 'dark', 'still', 'bright'],
-  ['Power', 'behind', 'the', 'walls']
-];
 let active = 0;
 
 function showProject(index) {
   const next = (index + slides.length) % slides.length;
   if (next === active) return;
-  slides[active].hidden = true;
-  slides[active].classList.remove('is-entering');
   dots[active].removeAttribute('aria-current');
   active = next;
-  slides[active].hidden = false;
-  slides[active].classList.add('is-entering');
+
+  const positions = ['current', 'next', 'off', 'previous'];
+  slides.forEach((slide, i) => {
+    slide.dataset.position = positions[(i - active + slides.length) % slides.length];
+    if (i === active) {
+      slide.removeAttribute('aria-hidden');
+    } else {
+      slide.setAttribute('aria-hidden', 'true');
+    }
+  });
+
   dots[active].setAttribute('aria-current', 'true');
-  gallery.querySelector('.project-index').textContent = `${String(active + 1).padStart(2, '0')} / 04`;
+  const formatIndex = value => String(value).padStart(2, '0');
+  gallery.querySelector('.project-index').textContent = `${formatIndex(active + 1)} / ${formatIndex(slides.length)}`;
   gallery.querySelector('.project-title').textContent = dots[active].getAttribute('aria-label');
-  ghost.replaceChildren(...ghostWords[active].map(word => {
-    const span = document.createElement('span');
-    span.textContent = word;
-    return span;
-  }));
-  ghost.classList.add('is-changing');
 }
+
+let swipeStart;
+stage.addEventListener('touchstart', event => {
+  swipeStart = event.touches.length === 1 ? event.touches[0] : null;
+}, {passive: true});
+stage.addEventListener('touchcancel', () => { swipeStart = null; });
+stage.addEventListener('touchend', event => {
+  if (!swipeStart) return;
+  const dx = event.changedTouches[0].clientX - swipeStart.clientX;
+  const dy = event.changedTouches[0].clientY - swipeStart.clientY;
+  swipeStart = null;
+  if (Math.abs(dx) >= 36 && Math.abs(dx) > 1.35 * Math.abs(dy)) {
+    showProject(active + (dx < 0 ? 1 : -1));
+  }
+}, {passive: true});
 
 gallery.addEventListener('click', event => {
   const button = event.target.closest('button');
