@@ -114,3 +114,10 @@
   .reveal-card { transition: opacity 600ms ease, transform 650ms cubic-bezier(.2,.75,.3,1); }
   .reveal-card.is-pending:not(:focus-within) { opacity: .24; transform: translateY(18px); }
 }
+
+.service-image.panel-photo {
+  object-fit: contain;
+  object-position: center;
+  padding: 12px;
+  background: #eee9e3;
+}
