@@ -60,32 +60,114 @@
       </div>
       <p class="work-intro-description">Chandeliers, exterior lighting, and the wiring behind it all.</p>
     </div>
-    <div class="project-carousel" aria-label="Arlington project gallery">
-      <div class="project-heading" aria-live="polite" aria-atomic="true">
-        <span class="project-index">01 / 04</span>
-        <h3 class="project-title">Chandelier installation</h3>
-        <p class="project-description">Starburst chandeliers mounted at staggered heights.</p>
-      </div>
-      <div class="project-stage reveal">
-        <img data-position="current" src="/assets/arlington-chandelier.webp" alt="Starburst chandeliers beneath a bronze ceiling">
-        <img data-position="next" src="/assets/arlington-honeycomb.webp" alt="Honeycomb LED fixtures installed overhead" loading="lazy" aria-hidden="true">
-        <img data-position="off" src="/assets/arlington-exterior.webp" alt="Exterior lighting illuminating a home at night" loading="lazy" aria-hidden="true">
-        <img data-position="previous" data-panel src="/assets/arlington-panel-pair.webp" alt="Rough-in wiring on the left and a close-up of the breaker panel on the right" loading="lazy" aria-hidden="true">
-      </div>
-      <div class="project-photo-labels" hidden>
-        <span>Rough-in wiring</span>
-        <span>Breaker panel close-up</span>
-      </div>
-      <div class="project-controls">
-        <button class="icon-button" type="button" data-project-step="-1" aria-label="Previous project">←</button>
-        <div class="project-dots" aria-label="Choose a project">
-          <button type="button" data-project="0" aria-label="Chandelier installation" data-description="Starburst chandeliers mounted at staggered heights." aria-current="true"></button>
-          <button type="button" data-project="1" aria-label="Honeycomb ceiling lighting" data-description="Interlocking LED fixtures installed across a garage ceiling."></button>
-          <button type="button" data-project="2" aria-label="Exterior lighting" data-description="Exterior fixtures illuminate the front of the home after dark."></button>
-          <button type="button" data-project="3" aria-label="Panel work in progress" data-description="Two views of the wiring behind the walls."></button>
+    <div class="project-categories">
+      <details class="project-category" open>
+        <summary>
+          <img src="/assets/arlington-chandelier.webp" alt="" width="96" height="56" loading="lazy">
+          <span class="project-category-name" id="projects-interior">Interior lighting</span>
+          <span class="project-category-count">3 projects</span>
+          <span class="service-indicator" aria-hidden="true"></span>
+        </summary>
+        <div class="project-gallery">
+          <div class="project-rail" role="region" aria-labelledby="projects-interior" tabindex="0">
+            <article class="project-card">
+              <img src="/assets/arlington-chandelier.webp" alt="Starburst chandeliers beneath a bronze ceiling" loading="lazy">
+              <div class="project-card-copy">
+                <span class="project-card-index">01 / 03</span>
+                <h3>Chandelier installation</h3>
+                <p>Starburst chandeliers mounted at staggered heights.</p>
+              </div>
+            </article>
+            <article class="project-card">
+              <img src="/assets/arlington-kitchen-lighting.jpeg" alt="Three woven pendants above a kitchen island" loading="lazy">
+              <div class="project-card-copy">
+                <span class="project-card-index">02 / 03</span>
+                <h3>Kitchen pendant lighting</h3>
+                <p>Three woven pendants light the island, with under-cabinet lighting along the counter.</p>
+              </div>
+            </article>
+            <article class="project-card project-card-stairwell">
+              <img src="/assets/arlington-stairwell-pendants.webp" alt="Cluster of hanging lights in a stairwell" loading="lazy">
+              <div class="project-card-copy">
+                <span class="project-card-index">03 / 03</span>
+                <h3>Stairwell pendants</h3>
+                <p>A cluster of pendants hangs at different heights above the staircase.</p>
+              </div>
+            </article>
+          </div>
+          <div class="project-controls" hidden>
+            <button class="icon-button" type="button" data-project-step="-1" aria-label="Previous project in Interior lighting">←</button>
+            <span class="project-count" aria-live="polite">1 of 3</span>
+            <button class="icon-button" type="button" data-project-step="1" aria-label="Next project in Interior lighting">→</button>
+          </div>
         </div>
-        <button class="icon-button" type="button" data-project-step="1" aria-label="Next project">→</button>
-      </div>
+      </details>
+      <details class="project-category">
+        <summary>
+          <img src="/assets/arlington-honeycomb.webp" alt="" width="96" height="56" loading="lazy">
+          <span class="project-category-name" id="projects-exterior">Garage &amp; exterior lighting</span>
+          <span class="project-category-count">2 projects</span>
+          <span class="service-indicator" aria-hidden="true"></span>
+        </summary>
+        <div class="project-gallery">
+          <div class="project-rail" role="region" aria-labelledby="projects-exterior" tabindex="0">
+            <article class="project-card">
+              <img src="/assets/arlington-honeycomb.webp" alt="Honeycomb LED fixtures installed overhead" loading="lazy">
+              <div class="project-card-copy">
+                <span class="project-card-index">01 / 02</span>
+                <h3>Honeycomb ceiling lighting</h3>
+                <p>Interlocking LED fixtures installed across a garage ceiling.</p>
+              </div>
+            </article>
+            <article class="project-card">
+              <img src="/assets/arlington-exterior.webp" alt="Exterior lighting illuminating a home at night" loading="lazy">
+              <div class="project-card-copy">
+                <span class="project-card-index">02 / 02</span>
+                <h3>Exterior lighting</h3>
+                <p>Exterior fixtures illuminate the front of the home after dark.</p>
+              </div>
+            </article>
+          </div>
+          <div class="project-controls" hidden>
+            <button class="icon-button" type="button" data-project-step="-1" aria-label="Previous project in Garage &amp; exterior lighting">←</button>
+            <span class="project-count" aria-live="polite">1 of 2</span>
+            <button class="icon-button" type="button" data-project-step="1" aria-label="Next project in Garage &amp; exterior lighting">→</button>
+          </div>
+        </div>
+      </details>
+      <details class="project-category">
+        <summary>
+          <img src="/assets/arlington-panel-pair.webp" alt="" width="96" height="56" loading="lazy">
+          <span class="project-category-name" id="projects-panels">Panels &amp; wiring</span>
+          <span class="project-category-count">2 projects</span>
+          <span class="service-indicator" aria-hidden="true"></span>
+        </summary>
+        <div class="project-gallery">
+          <div class="project-rail" role="region" aria-labelledby="projects-panels" tabindex="0">
+            <article class="project-card project-card-contain">
+              <img src="/assets/arlington-panel-pair.webp" alt="Rough-in wiring on the left and a breaker panel close-up on the right" loading="lazy">
+              <div class="project-card-copy">
+                <span class="project-card-index">01 / 02</span>
+                <h3>Panel work in progress</h3>
+                <p>Rough-in wiring on the left and a closer look at the breaker panel on the right.</p>
+              </div>
+            </article>
+            <article class="project-card project-card-contain">
+              <img src="/assets/arlington-surface-panel.webp" alt="A metal panel enclosure with conduit against a plywood wall" loading="lazy">
+              <div class="project-card-copy">
+                <span class="project-card-index">02 / 02</span>
+                <h3>Surface-mounted panel</h3>
+                <p>A wall-mounted panel enclosure with conduit visible along the sides.</p>
+              </div>
+            </article>
+          </div>
+          <div class="project-controls" hidden>
+            <button class="icon-button" type="button" data-project-step="-1" aria-label="Previous project in Panels &amp; wiring">←</button>
+            <span class="project-count" aria-live="polite">1 of 2</span>
+            <button class="icon-button" type="button" data-project-step="1" aria-label="Next project in Panels &amp; wiring">→</button>
+          </div>
+        </div>
+      </details>
     </div>
   </section>
   <section class="services section-pad ruled-section" id="services" aria-labelledby="services-heading">

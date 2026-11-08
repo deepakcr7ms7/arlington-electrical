@@ -58,64 +58,49 @@ if (!reducedMotion.matches) {
   }
 }
 
-const gallery = document.querySelector('.project-carousel');
-const stage = gallery.querySelector('.project-stage');
-const slides = Array.from(stage.querySelectorAll('img'));
-const dots = Array.from(gallery.querySelectorAll('[data-project]'));
-const photoLabels = gallery.querySelector('.project-photo-labels');
-let active = 0;
+for (const gallery of document.querySelectorAll('.project-gallery')) {
+  const rail = gallery.querySelector('.project-rail');
+  const cards = Array.from(rail.children);
+  const controls = gallery.querySelector('.project-controls');
+  const previous = controls.querySelector('[data-project-step="-1"]');
+  const next = controls.querySelector('[data-project-step="1"]');
+  const count = controls.querySelector('.project-count');
 
-function showProject(index) {
-  const next = (index + slides.length) % slides.length;
-  if (next === active) return;
-  dots[active].removeAttribute('aria-current');
-  active = next;
+  function activeIndex() {
+    const step = cards[1].offsetLeft - cards[0].offsetLeft;
+    return step ? Math.min(cards.length - 1, Math.round(rail.scrollLeft / step)) : 0;
+  }
 
-  const positions = ['current', 'next', 'off', 'previous'];
-  slides.forEach((slide, i) => {
-    slide.dataset.position = positions[(i - active + slides.length) % slides.length];
-    if (i === active) {
-      slide.removeAttribute('aria-hidden');
-    } else {
-      slide.setAttribute('aria-hidden', 'true');
-    }
+  function updateControls() {
+    const index = activeIndex();
+    const label = `${index + 1} of ${cards.length}`;
+    if (count.textContent !== label) count.textContent = label;
+    previous.setAttribute('aria-disabled', String(index === 0));
+    next.setAttribute('aria-disabled', String(index === cards.length - 1));
+  }
+
+  function moveProject(direction) {
+    const current = activeIndex();
+    const target = Math.max(0, Math.min(cards.length - 1, current + direction));
+    if (current === target) return;
+    rail.scrollTo({
+      left: cards[target].offsetLeft - cards[0].offsetLeft,
+      behavior: reducedMotion.matches ? 'instant' : 'smooth'
+    });
+  }
+
+  previous.addEventListener('click', () => moveProject(-1));
+  next.addEventListener('click', () => moveProject(1));
+  rail.addEventListener('scroll', updateControls, { passive: true });
+  rail.addEventListener('keydown', event => {
+    if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+    event.preventDefault();
+    moveProject(event.key === 'ArrowLeft' ? -1 : 1);
   });
 
-  dots[active].setAttribute('aria-current', 'true');
-  const formatIndex = value => String(value).padStart(2, '0');
-  gallery.querySelector('.project-index').textContent = `${formatIndex(active + 1)} / ${formatIndex(slides.length)}`;
-  gallery.querySelector('.project-title').textContent = dots[active].getAttribute('aria-label');
-  gallery.querySelector('.project-description').textContent = dots[active].dataset.description;
-  photoLabels.hidden = !slides[active].hasAttribute('data-panel');
+  updateControls();
+  controls.hidden = false;
 }
-
-let swipeStart;
-stage.addEventListener('touchstart', event => {
-  swipeStart = event.touches.length === 1 ? event.touches[0] : null;
-}, {passive: true});
-stage.addEventListener('touchcancel', () => { swipeStart = null; });
-stage.addEventListener('touchend', event => {
-  if (!swipeStart) return;
-  const dx = event.changedTouches[0].clientX - swipeStart.clientX;
-  const dy = event.changedTouches[0].clientY - swipeStart.clientY;
-  swipeStart = null;
-  if (Math.abs(dx) >= 36 && Math.abs(dx) > 1.35 * Math.abs(dy)) {
-    showProject(active + (dx < 0 ? 1 : -1));
-  }
-}, {passive: true});
-
-gallery.addEventListener('click', event => {
-  const button = event.target.closest('button');
-  if (!button) return;
-  showProject(button.hasAttribute('data-project')
-    ? Number(button.dataset.project)
-    : active + Number(button.dataset.projectStep));
-});
-gallery.addEventListener('keydown', event => {
-  if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
-  event.preventDefault();
-  showProject(active + (event.key === 'ArrowRight' ? 1 : -1));
-});
 
 const menu = document.querySelector('#menu');
 const menuToggle = document.querySelector('.menu-toggle');
