@@ -58,7 +58,90 @@ if (!reducedMotion.matches) {
   }
 }
 
-for (const gallery of document.querySelectorAll('.project-gallery')) {
+const projectCategories = Array.from(document.querySelectorAll('.project-category'), section => ({
+  section,
+  heading: section.querySelector('summary'),
+  gallery: section.querySelector('.project-gallery')
+}));
+let activeCategory = projectCategories.findIndex(({section}) => section.open);
+let categoryTransition = false;
+let queuedCategory = null;
+let lastCategoryScroll = scrollY;
+let handoffScroll = scrollY;
+let categoryFrame = 0;
+
+async function openProjectCategory(index) {
+  if (categoryTransition) {
+    queuedCategory = index;
+    return;
+  }
+  if (index === activeCategory) return;
+
+  const previous = projectCategories[activeCategory];
+  const next = projectCategories[index];
+  activeCategory = index;
+  if (reducedMotion.matches) {
+    previous.section.open = false;
+    next.section.open = true;
+    lastCategoryScroll = handoffScroll = scrollY;
+    return;
+  }
+
+  categoryTransition = true;
+  document.documentElement.classList.add('project-handoff');
+  const previousHeight = previous.gallery.getBoundingClientRect().height;
+  previous.gallery.inert = true;
+  next.section.open = true;
+  const nextHeight = next.gallery.getBoundingClientRect().height;
+  const options = {duration: 420, easing: 'cubic-bezier(.25,.7,.25,1)', fill: 'both'};
+  const closing = previous.gallery.animate([{height: `${previousHeight}px`}, {height: '0px'}], options);
+  const opening = next.gallery.animate([{height: '0px'}, {height: `${nextHeight}px`}], options);
+  await Promise.allSettled([closing.finished, opening.finished]);
+  previous.section.open = false;
+  previous.gallery.inert = false;
+  closing.cancel();
+  opening.cancel();
+  document.documentElement.classList.remove('project-handoff');
+  lastCategoryScroll = handoffScroll = scrollY;
+  categoryTransition = false;
+
+  const pending = queuedCategory;
+  queuedCategory = null;
+  if (pending !== null) openProjectCategory(pending);
+}
+
+projectCategories.forEach(({heading}, index) => {
+  heading.addEventListener('click', event => {
+    event.preventDefault();
+    openProjectCategory(index);
+  });
+});
+
+function followProjectScroll() {
+  categoryFrame = 0;
+  const direction = Math.sign(scrollY - lastCategoryScroll);
+  lastCategoryScroll = scrollY;
+  const current = projectCategories[activeCategory];
+  const keyboardFocus = current.gallery.contains(document.activeElement) && document.activeElement.matches(':focus-visible');
+  // Give the new gallery room before another scroll handoff.
+  if (!direction || categoryTransition || keyboardFocus || Math.abs(scrollY - handoffScroll) < 64) return;
+
+  const neighbor = projectCategories[activeCategory + direction];
+  if (!neighbor) return;
+  const currentTop = current.heading.getBoundingClientRect().top;
+  const neighborTop = neighbor.heading.getBoundingClientRect().top;
+  if (direction > 0 && currentTop <= innerHeight * .16 && neighborTop >= 0 && neighborTop <= innerHeight * .78) {
+    openProjectCategory(activeCategory + 1);
+  } else if (direction < 0 && currentTop >= innerHeight * .6 && currentTop < innerHeight && neighborTop >= 0) {
+    openProjectCategory(activeCategory - 1);
+  }
+}
+
+addEventListener('scroll', () => {
+  if (!categoryFrame) categoryFrame = requestAnimationFrame(followProjectScroll);
+}, {passive: true});
+
+for (const {gallery} of projectCategories) {
   const rail = gallery.querySelector('.project-rail');
   const cards = Array.from(rail.children);
   const controls = gallery.querySelector('.project-controls');
