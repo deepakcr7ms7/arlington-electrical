@@ -90,6 +90,8 @@ h2 { font-size: clamp(2.2rem, 5vw, 5.5rem); font-weight: 600; line-height: .98; 
 .intro-heading span { display: inline-block; }
 .intro-heading span:last-child { color: var(--blue); }
 .work { padding-top: clamp(36px, 5vw, 72px); }
+.work-intro-frame { display: flow-root; overflow: clip; overflow-anchor: none; }
+.work-intro-frame.is-compact { height: 0; }
 .work-intro {
   display: grid;
   grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr);

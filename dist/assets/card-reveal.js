@@ -63,12 +63,53 @@ const projectCategories = Array.from(document.querySelectorAll('.project-categor
   heading: section.querySelector('summary'),
   gallery: section.querySelector('.project-gallery')
 }));
+const workIntro = document.querySelector('.work-intro-frame');
+const handoffTiming = {duration: 640, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'both'};
 let activeCategory = projectCategories.findIndex(({section}) => section.open);
 let categoryTransition = false;
 let queuedCategory = null;
 let lastCategoryScroll = scrollY;
 let handoffScroll = scrollY;
 let categoryFrame = 0;
+let lastProjectScrollInput = -Infinity;
+let introAnimation;
+
+function compactWorkIntro(compact) {
+  const startHeight = workIntro.getBoundingClientRect().height;
+  introAnimation?.cancel();
+  workIntro.classList.toggle('is-compact', compact);
+  const endHeight = workIntro.getBoundingClientRect().height;
+  if (reducedMotion.matches || startHeight === endHeight) return;
+
+  const animation = workIntro.animate([{height: `${startHeight}px`}, {height: `${endHeight}px`}], handoffTiming);
+  introAnimation = animation;
+  animation.finished.then(() => animation.cancel(), () => {});
+  return animation;
+}
+
+function centerGallery(scrollTarget, opening) {
+  const start = scrollY;
+  let applied = start;
+  let frame;
+  let interrupted = false;
+  // A wheel or touch gesture can take over at any point.
+  function move(progress) {
+    interrupted ||= Math.abs(scrollY - applied) > 3;
+    if (interrupted) return false;
+    scrollTo({top: start + (scrollTarget - start) * progress, behavior: 'instant'});
+    applied = scrollY;
+    return true;
+  }
+  function tick() {
+    const progress = opening.effect.getComputedTiming().progress ?? 0;
+    if (move(progress) && progress < 1) frame = requestAnimationFrame(tick);
+  }
+  frame = requestAnimationFrame(tick);
+  return () => {
+    cancelAnimationFrame(frame);
+    move(1);
+  };
+}
 
 async function openProjectCategory(index) {
   if (categoryTransition) {
@@ -79,28 +120,37 @@ async function openProjectCategory(index) {
 
   const previous = projectCategories[activeCategory];
   const next = projectCategories[index];
+  const forward = index > activeCategory;
   activeCategory = index;
-  if (reducedMotion.matches) {
-    previous.section.open = false;
-    next.section.open = true;
-    lastCategoryScroll = handoffScroll = scrollY;
-    return;
-  }
-
   categoryTransition = true;
   document.documentElement.classList.add('project-handoff');
   const previousHeight = previous.gallery.getBoundingClientRect().height;
-  previous.gallery.inert = true;
+  const introHeight = workIntro.getBoundingClientRect().height;
+  const nextHeading = next.heading.getBoundingClientRect();
   next.section.open = true;
   const nextHeight = next.gallery.getBoundingClientRect().height;
-  const options = {duration: 420, easing: 'cubic-bezier(.25,.7,.25,1)', fill: 'both'};
-  const closing = previous.gallery.animate([{height: `${previousHeight}px`}, {height: '0px'}], options);
-  const opening = next.gallery.animate([{height: '0px'}, {height: `${nextHeight}px`}], options);
-  await Promise.allSettled([closing.finished, opening.finished]);
-  previous.section.open = false;
-  previous.gallery.inert = false;
-  closing.cancel();
-  opening.cancel();
+  const viewportHeight = window.visualViewport?.height ?? innerHeight;
+  const centeredTop = Math.max(12, (viewportHeight - nextHeading.height - nextHeight) / 2);
+  const scrollTarget = scrollY + nextHeading.top - introHeight - (forward ? previousHeight : 0) - centeredTop;
+  const intro = compactWorkIntro(true);
+
+  if (reducedMotion.matches) {
+    previous.section.open = false;
+    scrollTo({top: scrollTarget, behavior: 'instant'});
+  } else {
+    previous.gallery.inert = true;
+    next.gallery.inert = true;
+    const closing = previous.gallery.animate([{height: `${previousHeight}px`}, {height: '0px'}], handoffTiming);
+    const opening = next.gallery.animate([{height: '0px'}, {height: `${nextHeight}px`}], handoffTiming);
+    const finishCentering = centerGallery(scrollTarget, opening);
+    await Promise.allSettled([closing.finished, opening.finished, intro?.finished]);
+    finishCentering();
+    previous.section.open = false;
+    previous.gallery.inert = false;
+    next.gallery.inert = false;
+    closing.cancel();
+    opening.cancel();
+  }
   document.documentElement.classList.remove('project-handoff');
   lastCategoryScroll = handoffScroll = scrollY;
   categoryTransition = false;
@@ -125,18 +175,35 @@ function followProjectScroll() {
   const keyboardFocus = current.gallery.contains(document.activeElement) && document.activeElement.matches(':focus-visible');
   // Give the new gallery room before another scroll handoff.
   if (!direction || categoryTransition || keyboardFocus || Math.abs(scrollY - handoffScroll) < 64) return;
+  if (performance.now() - lastProjectScrollInput > 900) return;
 
+  const currentTop = current.heading.getBoundingClientRect().top;
+  if (direction < 0 && activeCategory === 0 && currentTop >= innerHeight * .6 && workIntro.classList.contains('is-compact')) {
+    compactWorkIntro(false);
+    return;
+  }
   const neighbor = projectCategories[activeCategory + direction];
   if (!neighbor) return;
-  const currentTop = current.heading.getBoundingClientRect().top;
   const neighborTop = neighbor.heading.getBoundingClientRect().top;
   if (direction > 0 && currentTop <= innerHeight * .16 && neighborTop >= 0 && neighborTop <= innerHeight * .78) {
     openProjectCategory(activeCategory + 1);
-  } else if (direction < 0 && currentTop >= innerHeight * .6 && currentTop < innerHeight && neighborTop >= 0) {
+  } else if (direction < 0 && currentTop >= innerHeight * .46 && currentTop < innerHeight && neighborTop >= 0) {
     openProjectCategory(activeCategory - 1);
   }
 }
 
+// Focus changes and anchor navigation can scroll the page too.
+addEventListener('wheel', event => {
+  if (Math.abs(event.deltaY) > Math.abs(event.deltaX)) lastProjectScrollInput = performance.now();
+}, {passive: true});
+addEventListener('touchmove', () => {
+  lastProjectScrollInput = performance.now();
+}, {passive: true});
+addEventListener('keydown', event => {
+  if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End'].includes(event.key)) {
+    lastProjectScrollInput = performance.now();
+  }
+});
 addEventListener('scroll', () => {
   if (!categoryFrame) categoryFrame = requestAnimationFrame(followProjectScroll);
 }, {passive: true});
