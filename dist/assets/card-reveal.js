@@ -211,6 +211,7 @@ addEventListener('scroll', () => {
 for (const {gallery} of projectCategories) {
   const rail = gallery.querySelector('.project-rail');
   const cards = Array.from(rail.children);
+  if (cards.length < 2) continue;
   const controls = gallery.querySelector('.project-controls');
   const previous = controls.querySelector('[data-project-step="-1"]');
   const next = controls.querySelector('[data-project-step="1"]');
