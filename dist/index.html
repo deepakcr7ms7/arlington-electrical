@@ -3,13 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#091b36">
+  <meta name="theme-color" content="#08121f">
   <meta name="description" content="Arlington Electrical Contracting Inc. provides residential and commercial electrical work, lighting, panel work, and TV installation. Call for a free estimate.">
   <title>Arlington Electrical Contracting Inc. — Residential & Commercial</title>
   <link rel="icon" href="/assets/images/shared/arlington-mark.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+  <script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.lightsReady)document.documentElement.classList.remove("js")},5000)</script>
   <link rel="stylesheet" href="/assets/lighting-scene.css">
   <script src="/assets/card-reveal.js" defer></script>
 </head>
@@ -32,31 +33,45 @@
         <button class="menu-toggle icon-button" type="button" aria-label="Open menu" aria-controls="menu" aria-expanded="false"><span></span><span></span></button>
       </div>
     </header>
-    <div class="hero-bottom hero-enter">
-      <div>
-        <p class="kicker"><span class="status-dot"></span> Residential &amp; commercial electrical</p>
+    <div class="hero-bottom">
+      <div class="hero-copy">
+        <h1 class="hero-heading"><span>Good work.</span> <span>Brighter spaces.</span></h1>
         <p class="hero-description">Lighting, power, and electrical work for homes and businesses.</p>
-        <button class="pill light hero-estimate" type="button" data-estimate>
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A18 18 0 0 1 4.1 6.2 2 2 0 0 1 6.1 4h3a2 2 0 0 1 2 1.7l.4 2.9a2 2 0 0 1-.6 1.7l-1.2 1.2a14 14 0 0 0 4.8 4.8l1.2-1.2a2 2 0 0 1 1.7-.6l2.9.4a2 2 0 0 1 1.7 2Z"/></svg>
-          Get a free estimate
-        </button>
-        <p class="hero-trust">Family-owned <span aria-hidden="true">·</span> Licensed &amp; insured</p>
+        <div class="hero-actions">
+          <button class="pill light hero-estimate" type="button" data-estimate>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A18 18 0 0 1 4.1 6.2 2 2 0 0 1 6.1 4h3a2 2 0 0 1 2 1.7l.4 2.9a2 2 0 0 1-.6 1.7l-1.2 1.2a14 14 0 0 0 4.8 4.8l1.2-1.2a2 2 0 0 1 1.7-.6l2.9.4a2 2 0 0 1 1.7 2Z"/></svg>
+            Get a free estimate
+          </button>
+          <a class="phone-link" href="tel:+16312630792">631-263-0792</a>
+        </div>
       </div>
-      <div class="reel-controls">
-        <span>Arlington project reel</span>
-        <button class="video-toggle icon-button" type="button" aria-label="Play project reel" hidden>
-          <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor" aria-hidden="true"><path class="play-icon" d="M5 2.5 13 8l-8 5.5z"/><path class="pause-icon" d="M4.5 3.5h2.25v9H4.5zm4.75 0h2.25v9H9.25z"/></svg>
+      <div class="hero-side">
+        <button class="light-switch" type="button" role="switch" aria-checked="true" aria-label="Lights">
+          <span class="light-plate" aria-hidden="true"><span class="light-paddle"></span></span>
+          <span class="light-label" aria-hidden="true">Lights <span class="light-state">on</span></span>
         </button>
-        <a href="#intro" class="icon-button down" aria-label="Scroll below the hero">↓</a>
+        <div class="reel-controls">
+          <span>Arlington project reel</span>
+          <button class="video-toggle icon-button" type="button" aria-label="Play project reel" hidden>
+            <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor" aria-hidden="true"><path class="play-icon" d="M5 2.5 13 8l-8 5.5z"/><path class="pause-icon" d="M4.5 3.5h2.25v9H4.5zm4.75 0h2.25v9H9.25z"/></svg>
+          </button>
+          <a href="#work" class="icon-button down" aria-label="Scroll to our work">↓</a>
+        </div>
       </div>
     </div>
   </section>
-  <h1 class="intro-heading" id="intro"><span>Good work.</span> <span>Brighter spaces.</span></h1>
+  <section class="spec" aria-label="About Arlington Electrical">
+    <div class="spec-grid">
+      <div><strong>Family owned</strong><span>And operated</span></div>
+      <div><strong>Licensed</strong><span>And insured</span></div>
+      <div><strong>Homes &amp; businesses</strong><span>Residential and commercial</span></div>
+      <div><strong>Free estimates</strong><span>Start with a call</span></div>
+    </div>
+  </section>
   <section class="work section-pad" id="work" aria-labelledby="work-heading">
     <div class="work-intro-frame">
       <div class="work-intro reveal">
         <div class="work-intro-title">
-          <p class="work-label"><span>01</span> / Selected work</p>
           <h2 id="work-heading">See the difference.</h2>
         </div>
         <p class="work-intro-description">Lighting, home entertainment, and the wiring behind it all.</p>
@@ -75,7 +90,6 @@
             <article class="project-card">
               <img src="/assets/images/selected-work/arlington-bathroom-sconces.webp" alt="Lit vanity sconces and shower accent lighting in a dark-tiled bathroom" loading="lazy">
               <div class="project-card-copy">
-                <span class="project-card-index">01 / 03</span>
                 <h3>Bathroom accent lighting</h3>
                 <p>Vanity sconces and accent lights bring out the texture of the tile.</p>
               </div>
@@ -83,7 +97,6 @@
             <article class="project-card">
               <img src="/assets/images/selected-work/arlington-honeycomb.webp" alt="Honeycomb LED fixtures installed overhead" loading="lazy">
               <div class="project-card-copy">
-                <span class="project-card-index">02 / 03</span>
                 <h3>Honeycomb ceiling lighting</h3>
                 <p>Interlocking LED fixtures installed across a garage ceiling.</p>
               </div>
@@ -91,7 +104,6 @@
             <article class="project-card project-card-stairwell">
               <img src="/assets/images/selected-work/arlington-stairwell-pendants.webp" alt="Cluster of hanging lights in a stairwell" loading="lazy">
               <div class="project-card-copy">
-                <span class="project-card-index">03 / 03</span>
                 <h3>Stairwell pendants</h3>
                 <p>A cluster of pendants hangs at different heights above the staircase.</p>
               </div>
@@ -116,7 +128,6 @@
             <article class="project-card">
               <img src="/assets/images/selected-work/arlington-kitchen-globe-pendants.webp" alt="Three glass globe pendants above a kitchen island" loading="lazy">
               <div class="project-card-copy">
-                <span class="project-card-index">01 / 03</span>
                 <h3>Globe pendants over the island</h3>
                 <p>Globe pendants light the island, with recessed fixtures across the ceiling.</p>
               </div>
@@ -124,7 +135,6 @@
             <article class="project-card">
               <img src="/assets/images/selected-work/arlington-kitchen-island.webp" alt="Recessed ceiling lights in a bright kitchen with a long island" loading="lazy">
               <div class="project-card-copy">
-                <span class="project-card-index">02 / 03</span>
                 <h3>Recessed kitchen lighting</h3>
                 <p>Recessed fixtures spread light across the island and surrounding counters.</p>
               </div>
@@ -132,7 +142,6 @@
             <article class="project-card">
               <img src="/assets/images/selected-work/arlington-kitchen-dark-island.webp" alt="Kitchen with recessed fixtures and a dark island" loading="lazy">
               <div class="project-card-copy">
-                <span class="project-card-index">03 / 03</span>
                 <h3>Kitchen task lighting</h3>
                 <p>Recessed lighting covers the island and the surrounding work areas.</p>
               </div>
@@ -157,7 +166,6 @@
             <article class="project-card">
               <img src="/assets/images/selected-work/arlington-living-room-tv.webp" alt="Wall-mounted television above a wood console facing a sectional" loading="lazy">
               <div class="project-card-copy">
-                <span class="project-card-index">01 / 02</span>
                 <h3>Living room TV setup</h3>
                 <p>A wall-mounted TV sits above a low console in a finished seating area.</p>
               </div>
@@ -165,7 +173,6 @@
             <article class="project-card">
               <img src="/assets/images/selected-work/arlington-recessed-tv-wall.webp" alt="Wall-mounted television centered on a gray wall" loading="lazy">
               <div class="project-card-copy">
-                <span class="project-card-index">02 / 02</span>
                 <h3>TV wall installation</h3>
                 <p>A wall-mounted TV anchors this recessed entertainment area.</p>
               </div>
@@ -190,7 +197,6 @@
             <article class="project-card">
               <img src="/assets/images/selected-work/arlington-exterior.webp" alt="Exterior lighting illuminating a home at night" loading="lazy">
               <div class="project-card-copy">
-                <span class="project-card-index">01 / 01</span>
                 <h3>Exterior lighting</h3>
                 <p>Exterior fixtures illuminate the front of the home after dark.</p>
               </div>
@@ -215,7 +221,6 @@
             <article class="project-card project-card-contain">
               <img src="/assets/images/shared/arlington-panel-pair.webp" alt="Rough-in wiring on the left and a breaker panel close-up on the right" loading="lazy">
               <div class="project-card-copy">
-                <span class="project-card-index">01 / 02</span>
                 <h3>Panel work in progress</h3>
                 <p>Rough-in wiring on the left and a closer look at the breaker panel on the right.</p>
               </div>
@@ -223,7 +228,6 @@
             <article class="project-card project-card-contain">
               <img src="/assets/images/selected-work/arlington-surface-panel.webp" alt="A metal panel enclosure with conduit against a plywood wall" loading="lazy">
               <div class="project-card-copy">
-                <span class="project-card-index">02 / 02</span>
                 <h3>Surface-mounted panel</h3>
                 <p>A wall-mounted panel enclosure with conduit visible along the sides.</p>
               </div>
@@ -239,7 +243,7 @@
     </div>
   </section>
   <section class="services section-pad ruled-section" id="services" aria-labelledby="services-heading">
-    <div class="service-intro"><p class="kicker">02 / What we do</p><h2 id="services-heading">Electrical work<br>for every space.</h2><p>From a single fixture to the wiring behind a renovation.</p></div>
+    <div class="service-intro"><h2 id="services-heading">Electrical work<br>for every space.</h2><p>From a single fixture to the wiring behind a renovation.</p></div>
     <div class="service-list">
       <details name="services" open>
         <summary><span class="number">01</span><h3>Lighting, inside &amp; out</h3><span class="service-indicator" aria-hidden="true"></span></summary>
@@ -264,21 +268,12 @@
       <figure><img src="/assets/images/shared/arlington-panel-pair.webp" alt="Arlington panel wiring and breaker work in progress" loading="lazy"><figcaption>Panel &amp; rough-in work</figcaption></figure>
       <figure><img src="/assets/images/process/arlington-kitchen-lighting.jpeg" alt="Arlington kitchen lighting with three pendant fixtures" loading="lazy"><figcaption>Kitchen lighting</figcaption></figure>
     </div>
-    <div class="process-copy"><p class="kicker">03 / Our approach</p><h2 id="process-heading">From first call<br>to lights on.</h2>
+    <div class="process-copy"><h2 id="process-heading">From first call<br>to lights on.</h2>
       <ol><li>Tell us what you’re working on.</li><li>Get a clear plan and estimate.</li><li>Set a time to get the work underway.</li></ol>
       <button type="button" class="pill" data-estimate>Talk through your project <span aria-hidden="true">↗</span></button>
     </div>
   </section>
   <div class="closing dark">
-    <section class="trust section-pad" aria-label="About Arlington Electrical">
-      <p class="kicker">04 / Arlington Electrical</p>
-      <div class="trust-grid">
-        <div><strong>Family owned</strong><span>And operated</span></div>
-        <div><strong>Licensed</strong><span>And insured</span></div>
-        <div><strong>Homes &amp; businesses</strong><span>Residential and commercial</span></div>
-        <div><strong>Free estimates</strong><span>Start with a call</span></div>
-      </div>
-    </section>
     <footer class="footer section-pad ruled-section" id="contact">
       <div class="footer-main">
         <div><p class="kicker">Have a project in mind?</p><h2>Let’s talk.</h2></div>
@@ -288,6 +283,7 @@
     </footer>
   </div>
 </main>
+<a class="call-bar" href="tel:+16312630792" aria-label="Call Arlington Electrical at 631-263-0792"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A18 18 0 0 1 4.1 6.2 2 2 0 0 1 6.1 4h3a2 2 0 0 1 2 1.7l.4 2.9a2 2 0 0 1-.6 1.7l-1.2 1.2a14 14 0 0 0 4.8 4.8l1.2-1.2a2 2 0 0 1 1.7-.6l2.9.4a2 2 0 0 1 1.7 2Z"/></svg>Call 631-263-0792</a>
 <dialog id="menu" class="menu-dialog dark" aria-labelledby="menu-title">
   <div class="menu-inner">
     <div class="menu-bar"><p id="menu-title" class="kicker">Arlington Electrical</p><button type="button" class="icon-button" data-close aria-label="Close menu">×</button></div>

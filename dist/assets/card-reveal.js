@@ -2,6 +2,41 @@ const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 const hero = document.querySelector('.hero');
 const video = hero.querySelector('video');
 const videoToggle = hero.querySelector('.video-toggle');
+window.lightsReady = true;
+
+// The hero starts dark and the lights come up once, as the page opens.
+const lightSwitch = hero.querySelector('.light-switch');
+const lightState = lightSwitch.querySelector('.light-state');
+let lightsOnTimer = 0;
+function setLights(on) {
+  hero.classList.toggle('is-lit', on);
+  lightSwitch.setAttribute('aria-checked', String(on));
+  lightState.textContent = on ? 'on' : 'off';
+}
+lightSwitch.addEventListener('click', () => {
+  clearTimeout(lightsOnTimer);
+  setLights(lightSwitch.getAttribute('aria-checked') !== 'true');
+});
+if (reducedMotion.matches) {
+  setLights(true);
+} else {
+  setLights(false);
+  lightsOnTimer = setTimeout(() => setLights(true), 500);
+}
+
+// Keep the phone number in reach between the hero and the footer, where it already sits.
+const callBar = document.querySelector('.call-bar');
+if (callBar && 'IntersectionObserver' in window) {
+  const covered = new Set([hero]);
+  const callBarObserver = new IntersectionObserver(entries => {
+    for (const {target, isIntersecting} of entries) {
+      if (isIntersecting) covered.add(target); else covered.delete(target);
+    }
+    callBar.classList.toggle('is-visible', covered.size === 0);
+  }, {rootMargin: '-85% 0px 0px 0px'}); // only the bottom strip, where the button sits
+  callBarObserver.observe(hero);
+  callBarObserver.observe(document.querySelector('.footer'));
+}
 
 if (!reducedMotion.matches) {
   video.addEventListener('playing', () => {
