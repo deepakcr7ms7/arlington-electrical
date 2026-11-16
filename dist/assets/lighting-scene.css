@@ -256,3 +256,27 @@ dialog::backdrop { background: #051124bb; backdrop-filter: blur(5px); }
   max-height: none;
 }
 .menu-inner { max-width: 1100px; margin: auto; }
+
+/* Colored light across the project, services, and process sections. */
+main {
+  background:
+    radial-gradient(ellipse 65% 30% at 0% 62%, #125475 0%, transparent 100%),
+    radial-gradient(ellipse 55% 24% at 100% 76%, #342c60 0%, transparent 100%),
+    #0c172e;
+}
+:is(.work, .services, .process) {
+  --ink: #f1f7ff;
+  --muted: #bdcde3;
+  --line: #a7c6eb45;
+  --blue: #a6ddff;
+  color: var(--ink);
+}
+:is(.work, .services, .process) .icon-button { background: #142745; }
+.project-category[open] > summary,
+.service-list details[open] { background: linear-gradient(90deg, #75bcff16, transparent); }
+.service-list details,
+.service-list details:last-child { border-color: var(--line); }
+.pill.light { background: #ffd67a; color: #211625; }
+@media (max-width: 770px) {
+  .project-card { min-height: clamp(218px, min(76vw, calc(100svh - 160px)), 480px); }
+}
