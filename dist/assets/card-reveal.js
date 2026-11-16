@@ -63,8 +63,7 @@ const projectCategories = Array.from(document.querySelectorAll('.project-categor
   heading: section.querySelector('summary'),
   gallery: section.querySelector('.project-gallery')
 }));
-const workIntro = document.querySelector('.work-intro-frame');
-const handoffTiming = {duration: 640, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'both'};
+const handoffTiming = {duration: 760, easing: 'cubic-bezier(.45,0,.25,1)', fill: 'both'};
 let activeCategory = projectCategories.findIndex(({section}) => section.open);
 let categoryTransition = false;
 let queuedCategory = null;
@@ -72,42 +71,34 @@ let lastCategoryScroll = scrollY;
 let handoffScroll = scrollY;
 let categoryFrame = 0;
 let lastProjectScrollInput = -Infinity;
-let introAnimation;
-
-function compactWorkIntro(compact) {
-  const startHeight = workIntro.getBoundingClientRect().height;
-  introAnimation?.cancel();
-  workIntro.classList.toggle('is-compact', compact);
-  const endHeight = workIntro.getBoundingClientRect().height;
-  if (reducedMotion.matches || startHeight === endHeight) return;
-
-  const animation = workIntro.animate([{height: `${startHeight}px`}, {height: `${endHeight}px`}], handoffTiming);
-  introAnimation = animation;
-  animation.finished.then(() => animation.cancel(), () => {});
-  return animation;
-}
-
-function centerGallery(scrollTarget, opening) {
-  const start = scrollY;
-  let applied = start;
+function centerGallery(heading, startTop, endTop, opening) {
   let frame;
   let interrupted = false;
-  // A wheel or touch gesture can take over at any point.
-  function move(progress) {
-    interrupted ||= Math.abs(scrollY - applied) > 3;
-    if (interrupted) return false;
-    scrollTo({top: start + (scrollTarget - start) * progress, behavior: 'instant'});
-    applied = scrollY;
-    return true;
+  const input = new AbortController();
+  for (const type of ['wheel', 'touchmove', 'keydown']) {
+    addEventListener(type, event => {
+      if (type !== 'keydown' || ['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End'].includes(event.key)) {
+        interrupted = true;
+      }
+    }, {passive: true, signal: input.signal});
   }
+
+  function position(progress) {
+    const targetTop = startTop + (endTop - startTop) * progress;
+    scrollTo({top: scrollY + heading.getBoundingClientRect().top - targetTop, behavior: 'instant'});
+  }
+
   function tick() {
+    if (interrupted) return;
     const progress = opening.effect.getComputedTiming().progress ?? 0;
-    if (move(progress) && progress < 1) frame = requestAnimationFrame(tick);
+    position(progress);
+    if (progress < 1) frame = requestAnimationFrame(tick);
   }
   frame = requestAnimationFrame(tick);
   return () => {
     cancelAnimationFrame(frame);
-    move(1);
+    input.abort();
+    if (!interrupted) position(1);
   };
 }
 
@@ -120,36 +111,31 @@ async function openProjectCategory(index) {
 
   const previous = projectCategories[activeCategory];
   const next = projectCategories[index];
-  const forward = index > activeCategory;
   activeCategory = index;
   categoryTransition = true;
   document.documentElement.classList.add('project-handoff');
   const previousHeight = previous.gallery.getBoundingClientRect().height;
-  const introHeight = workIntro.getBoundingClientRect().height;
   const nextHeading = next.heading.getBoundingClientRect();
   next.section.open = true;
   const nextHeight = next.gallery.getBoundingClientRect().height;
   const viewportHeight = window.visualViewport?.height ?? innerHeight;
   const centeredTop = Math.max(12, (viewportHeight - nextHeading.height - nextHeight) / 2);
-  const scrollTarget = scrollY + nextHeading.top - introHeight - (forward ? previousHeight : 0) - centeredTop;
-  const intro = compactWorkIntro(true);
-
   if (reducedMotion.matches) {
     previous.section.open = false;
-    scrollTo({top: scrollTarget, behavior: 'instant'});
+    scrollTo({top: scrollY + next.heading.getBoundingClientRect().top - centeredTop, behavior: 'instant'});
   } else {
     previous.gallery.inert = true;
     next.gallery.inert = true;
     const closing = previous.gallery.animate([{height: `${previousHeight}px`}, {height: '0px'}], handoffTiming);
     const opening = next.gallery.animate([{height: '0px'}, {height: `${nextHeight}px`}], handoffTiming);
-    const finishCentering = centerGallery(scrollTarget, opening);
-    await Promise.allSettled([closing.finished, opening.finished, intro?.finished]);
-    finishCentering();
+    const finishCentering = centerGallery(next.heading, nextHeading.top, centeredTop, opening);
+    await Promise.allSettled([closing.finished, opening.finished]);
     previous.section.open = false;
     previous.gallery.inert = false;
     next.gallery.inert = false;
     closing.cancel();
     opening.cancel();
+    finishCentering();
   }
   document.documentElement.classList.remove('project-handoff');
   lastCategoryScroll = handoffScroll = scrollY;
@@ -178,10 +164,6 @@ function followProjectScroll() {
   if (performance.now() - lastProjectScrollInput > 900) return;
 
   const currentTop = current.heading.getBoundingClientRect().top;
-  if (direction < 0 && activeCategory === 0 && currentTop >= innerHeight * .6 && workIntro.classList.contains('is-compact')) {
-    compactWorkIntro(false);
-    return;
-  }
   const neighbor = projectCategories[activeCategory + direction];
   if (!neighbor) return;
   const neighborTop = neighbor.heading.getBoundingClientRect().top;
