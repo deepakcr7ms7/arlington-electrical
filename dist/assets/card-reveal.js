@@ -294,6 +294,46 @@ function initShowcase(root) {
 const showcase = document.querySelector('[data-showcase]');
 if (showcase) initShowcase(showcase);
 
+function initServices(root) {
+  const rows = [...root.querySelectorAll('.svc-row')];
+  const spots = [...root.querySelectorAll('.svc-spot')];
+  const keys = rows.map(r => r.dataset.svc);
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  // Lock panel height to the tallest description so total height never changes on selection.
+  const measure = () => {
+    let max = 0;
+    for (const row of rows) max = Math.max(max, row.querySelector('.svc-panel-inner').scrollHeight);
+    root.style.setProperty('--panel-h', max + 'px');
+  };
+  const select = (key, focusTrigger) => {
+    root.dataset.active = key;
+    rows.forEach(row => {
+      const on = row.dataset.svc === key;
+      if (on) row.dataset.selected = 'true'; else delete row.dataset.selected;
+      row.querySelector('.svc-trigger').setAttribute('aria-expanded', String(on));
+    });
+    spots.forEach(spot => spot.setAttribute('aria-pressed', String(spot.dataset.svc === key)));
+    if (focusTrigger) root.querySelector(`#svc-t-${key}`).focus({ preventScroll: true });
+  };
+  measure();
+  root.dataset.enhanced = '';
+  addEventListener('resize', measure);
+  document.fonts?.ready.then(measure);
+  rows.forEach(row => row.querySelector('.svc-trigger').addEventListener('click', () => select(row.dataset.svc)));
+  spots.forEach(spot => spot.addEventListener('click', () => select(spot.dataset.svc)));
+  root.querySelector('.svc-rows').addEventListener('keydown', event => {
+    const i = keys.indexOf(event.target.closest('.svc-row')?.dataset.svc);
+    if (i < 0 || !event.target.matches('.svc-trigger')) return;
+    const next = { ArrowDown: i + 1, ArrowUp: i - 1, Home: 0, End: keys.length - 1 }[event.key];
+    if (next === undefined) return;
+    event.preventDefault();
+    root.querySelector(`#svc-t-${keys[(next + keys.length) % keys.length]}`).focus({ preventScroll: true });
+  });
+  select(keys[0]);
+}
+const services = document.querySelector('[data-services]');
+if (services) initServices(services);
+
 const menu = document.querySelector('#menu');
 const menuToggle = document.querySelector('.menu-toggle');
 const booking = document.querySelector('#booking');
