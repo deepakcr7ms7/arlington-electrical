@@ -126,7 +126,8 @@ function initShowcase(root) {
     tab.id = `showcase-tab-${i}`;
     tab.setAttribute('role', 'tab');
     tab.setAttribute('aria-controls', 'showcase-panel');
-    tab.textContent = item.dataset.service;
+    tab.innerHTML = `<span class="sw-label"></span><span class="sw-well" aria-hidden="true"><span class="sw-rocker"></span></span>`;
+    tab.querySelector('.sw-label').textContent = item.dataset.service;
     tab.addEventListener('click', () => selectService(i));
     return tab;
   });
@@ -168,7 +169,9 @@ function initShowcase(root) {
     count.textContent = `${index + 1} of ${slides.length}`;
     previous.setAttribute('aria-disabled', String(index === 0));
     next.setAttribute('aria-disabled', String(index === slides.length - 1));
-    controls.hidden = thumbs.hidden = slides.length < 2;
+    const single = slides.length < 2;
+    controls.classList.toggle('is-idle', single); thumbs.classList.toggle('is-idle', single);
+    controls.inert = thumbs.inert = single;
     if (index !== previousIndex || instant) {
       caption.classList.remove('is-changing');
       if (!instant) {
@@ -217,7 +220,7 @@ function initShowcase(root) {
       track.classList.add('is-entering');
       const tab = tabs[i];
       tablist.scrollTo({left: tab.offsetLeft - (tablist.clientWidth - tab.offsetWidth) / 2, behavior: reducedMotion.matches ? 'instant' : 'smooth'});
-      status.textContent = `${tab.textContent}: project 1 of ${slides.length}`;
+      status.textContent = `${tracks[i].dataset.service}: project 1 of ${slides.length}`;
     }
     if (focus) tabs[i].focus();
   }
@@ -275,9 +278,64 @@ function initShowcase(root) {
   photo.addEventListener('pointerup', event => endDrag(event, false));
   photo.addEventListener('pointercancel', event => endDrag(event, true));
 
-  caption.hidden = false;
+  caption.hidden = false; controls.hidden = false; thumbs.hidden = false;
   root.dataset.enhanced = '';
   selectService(0, {initial: true});
+
+  // Reserve room for the longest caption so the section never changes height.
+  function measureCaption() {
+    const t0 = title.textContent, d0 = description.textContent;
+    caption.style.minHeight = '0';
+    let max = 0;
+    for (const slide of root.querySelectorAll('.showcase-slide')) {
+      title.textContent = slide.querySelector('h4').textContent;
+      description.textContent = slide.querySelector('.showcase-slide-copy p').textContent;
+      max = Math.max(max, caption.offsetHeight);
+    }
+    title.textContent = t0; description.textContent = d0;
+    caption.style.minHeight = max + 'px';
+  }
+
+  // The wire: runs under the plates, drops from each, and one connection reaches the top of the photo.
+  const NS = 'http://www.w3.org/2000/svg';
+  const wire = document.createElementNS(NS, 'svg');
+  wire.setAttribute('class', 'showcase-wire');
+  wire.setAttribute('aria-hidden', 'true');
+  wire.setAttribute('focusable', 'false');
+  root.append(wire);
+  function drawWire() {
+    const rb = root.getBoundingClientRect(), rail = tablist.getBoundingClientRect(), pb = photo.getBoundingClientRect();
+    if (!rb.width) return;
+    wire.setAttribute('viewBox', `0 0 ${rb.width} ${rb.height}`);
+    const rects = tabs.map(tab => tab.getBoundingClientRect());
+    const xs = rects.map(r => r.left + r.width / 2 - rb.left);
+    const plateBottom = rects[0].bottom - rb.top;
+    const y = plateBottom + 26;
+    const top = pb.top - rb.top;
+    const clipL = rail.left - rb.left, clipR = rail.right - rb.left;
+    const sx = xs[service];
+    const px = Math.max(pb.left - rb.left + 28, Math.min(pb.right - rb.left - 28, sx, clipR - 24), clipL + 24);
+    const [lo, hi] = sx < px ? [sx, px] : [px, sx];
+    let svg = `<defs><clipPath id="sw-clip"><rect x="${clipL}" y="0" width="${clipR - clipL}" height="${rb.height}"/></clipPath></defs><g clip-path="url(#sw-clip)">`;
+    svg += `<path class="sw-line" d="M${xs[0]} ${y}H${xs[xs.length - 1]}"/>`;
+    xs.forEach((x, i) => { svg += `<path class="sw-line" d="M${x} ${plateBottom}V${y}"/>`; });
+    svg += `<path class="sw-live" d="M${sx} ${plateBottom}V${y}"/>`;
+    if (hi > lo) svg += `<path class="sw-live" d="M${lo} ${y}H${hi}"/>`;
+    svg += `<path class="sw-live" d="M${px} ${y}V${top}" opacity=".9"/>`;
+    xs.forEach((x, i) => { svg += `<circle class="sw-node${i === service ? ' is-on' : ''}" cx="${x}" cy="${y}" r="${i === service ? 5 : 3.5}"/>`; });
+    svg += `<circle class="sw-node is-on" cx="${px}" cy="${top}" r="3.5"/></g>`;
+    wire.innerHTML = svg;
+  }
+  let frame = 0;
+  const redraw = () => { cancelAnimationFrame(frame); frame = requestAnimationFrame(drawWire); };
+  const relayout = () => { measureCaption(); redraw(); };
+  relayout();
+  new ResizeObserver(relayout).observe(root);
+  tablist.addEventListener('scroll', redraw, {passive: true});
+  addEventListener('resize', relayout);
+  document.fonts?.ready.then(relayout);
+  tabs.forEach(tab => tab.addEventListener('click', redraw));
+  tablist.addEventListener('keydown', redraw);
   // Photos load as the card nears the screen, and each service's photos load when its tab opens.
   if ('IntersectionObserver' in window) {
     const near = new IntersectionObserver(([entry]) => {
