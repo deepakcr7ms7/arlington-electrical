@@ -334,6 +334,95 @@ function initServices(root) {
 const services = document.querySelector('[data-services]');
 if (services) initServices(services);
 
+function initWires(root) {
+  const grid = root.querySelector('.svc-grid');
+  const svg = grid.querySelector('.svc-wires');
+  const NS = 'http://www.w3.org/2000/svg';
+  const make = (tag, cls, parent) => { const el = document.createElementNS(NS, tag); if (cls) el.setAttribute('class', cls); parent.append(el); return el; };
+  const wires = [...root.querySelectorAll('.svc-row')].map((row, i) => {
+    const g = make('g', 'svc-wire', svg);
+    const base = make('path', 'svc-wire-base', g);
+    const live = make('path', 'svc-wire-live', g); live.setAttribute('pathLength', '1');
+    const flow = make('path', 'svc-wire-flow', g); flow.setAttribute('pathLength', '1');
+    const e1 = make('circle', 'svc-end', g), e2 = make('circle', 'svc-end', g);
+    [e1, e2].forEach(e => e.setAttribute('r', '5'));
+    return { key: row.dataset.svc, row, g, paths: [base, live, flow], e1, e2, i };
+  });
+  const rounded = (pts, r) => {
+    let d = `M${pts[0][0]} ${pts[0][1]}`;
+    for (let k = 1; k < pts.length - 1; k++) {
+      const [x0, y0] = pts[k - 1], [x1, y1] = pts[k], [x2, y2] = pts[k + 1];
+      const l1 = Math.hypot(x1 - x0, y1 - y0), l2 = Math.hypot(x2 - x1, y2 - y1);
+      const rr = Math.min(r, l1 / 2, l2 / 2);
+      if (rr < 1) { d += `L${x1} ${y1}`; continue; }
+      d += `L${x1 - (x1 - x0) / l1 * rr} ${y1 - (y1 - y0) / l1 * rr}Q${x1} ${y1} ${x1 + (x2 - x1) / l2 * rr} ${y1 + (y2 - y1) / l2 * rr}`;
+    }
+    const last = pts[pts.length - 1];
+    return d + `L${last[0]} ${last[1]}`;
+  };
+  const layout = () => {
+    const gb = grid.getBoundingClientRect();
+    svg.setAttribute('viewBox', `0 0 ${gb.width} ${gb.height}`);
+    const stacked = innerWidth <= 880;
+    const items = wires.map(w => {
+      const t = w.row.querySelector('.svc-trigger').getBoundingClientRect();
+      const s = root.querySelector(`.svc-spot[data-svc="${w.key}"]`).getBoundingClientRect();
+      return { w, sx: t.left - gb.left, sy: t.top + 32 - gb.top, ex: s.left + s.width / 2 - gb.left, ey: s.top + s.height / 2 - gb.top };
+    });
+    // lane order: keep verticals from crossing where possible
+    const sorted = [...items].sort((a, b) => stacked ? b.ey - a.ey : a.ey - b.ey);
+    const art = root.querySelector('.svc-art').getBoundingClientRect();
+    const laneBase = stacked ? 6 : (art.right - gb.left) + Math.max(8, (root.querySelector('.svc-rows').getBoundingClientRect().left - art.right) / 2 - sorted.length * 4);
+    sorted.forEach((it, n) => { it.lane = stacked ? laneBase + n * 7 : laneBase + n * 8; });
+    for (const it of items) {
+      const pts = [[it.sx, it.sy], [it.lane, it.sy], [it.lane, it.ey], [it.ex, it.ey]];
+      const d = rounded(pts, 10);
+      it.w.paths.forEach(p => p.setAttribute('d', d));
+      it.w.e1.setAttribute('cx', it.sx); it.w.e1.setAttribute('cy', it.sy);
+      it.w.e2.setAttribute('cx', it.ex); it.w.e2.setAttribute('cy', it.ey);
+    }
+  };
+  const sync = () => wires.forEach(w => w.g.classList.toggle('is-on', w.row.dataset.selected === 'true'));
+  let raf = 0;
+  const settle = () => { cancelAnimationFrame(raf); const t0 = performance.now(); const tick = () => { layout(); if (performance.now() - t0 < 520) raf = requestAnimationFrame(tick); }; tick(); };
+  new MutationObserver(() => { sync(); settle(); }).observe(root.querySelector('.svc-rows'), { subtree: true, attributes: true, attributeFilter: ['data-selected'] });
+  addEventListener('resize', settle);
+  document.fonts?.ready.then(settle);
+  layout(); sync();
+}
+if (services) initWires(services);
+
+// Hero tagline highlighter + KPI count-up
+const heroHeading = document.querySelector('.hero-heading');
+if (heroHeading) {
+  const runHl = () => { heroHeading.classList.remove('hl-run'); void heroHeading.offsetWidth; heroHeading.classList.add('hl-run'); };
+  setTimeout(runHl, 500);
+  document.querySelector('.light-switch')?.addEventListener('click', () => setTimeout(runHl, 250));
+}
+const kpis = document.querySelector('[data-kpis]');
+if (kpis) {
+  const nums = [...kpis.querySelectorAll('[data-count]')];
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const show = (el, v) => { el.querySelector('[aria-hidden]').textContent = v + el.dataset.suffix; };
+  if (reduced) nums.forEach(el => show(el, el.dataset.count));
+  else {
+    const io = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        io.unobserve(entry.target);
+        const el = entry.target, end = +el.dataset.count, t0 = performance.now(), dur = 1500 + end * 12;
+        const step = now => {
+          const p = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+          show(el, Math.round(end * e));
+          if (p < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      }
+    }, { threshold: 0.6 });
+    nums.forEach(el => io.observe(el));
+  }
+}
+
 const menu = document.querySelector('#menu');
 const menuToggle = document.querySelector('.menu-toggle');
 const booking = document.querySelector('#booking');
