@@ -402,6 +402,7 @@ if (heroHeading) {
 const kpis = document.querySelector('[data-kpis]');
 if (kpis) {
   const nums = [...kpis.querySelectorAll('[data-count]')];
+  nums.forEach(el => { if (el.dataset.since) el.dataset.count = new Date().getFullYear() - +el.dataset.since; });
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const show = (el, v) => { el.querySelector('[aria-hidden]').textContent = v + el.dataset.suffix; };
   if (reduced) nums.forEach(el => show(el, el.dataset.count));
