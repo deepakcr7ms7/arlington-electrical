@@ -16,9 +16,9 @@ Open [localhost:8000](http://localhost:8000). On Windows, use `py` in place of `
 
 | Path | Contents |
 | --- | --- |
-| `dist/index.html` | Page content, inline styles, and interactions |
-| `dist/assets/lighting-scene.css` | Lighting scene styles |
-| `dist/assets/card-reveal.js` | Project card reveal interactions |
+| `dist/index.html` | Page content and markup |
+| `dist/assets/lighting-scene.css` | All styles: design tokens, hero, sections, dialogs |
+| `dist/assets/card-reveal.js` | Hero lights-on switch and video, Selected Work showcase and the Services cutaway selector (tabs, swipe), dialogs, call button |
 | `dist/assets/images/hero/` | Hero poster |
 | `dist/assets/images/selected-work/` | Project gallery photos |
 | `dist/assets/images/process/` | Process section photos |

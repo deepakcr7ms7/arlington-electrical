@@ -3,15 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#091b36">
+  <meta name="theme-color" content="#08121f">
   <meta name="description" content="Arlington Electrical Contracting Inc. provides residential and commercial electrical work, lighting, panel work, and TV installation. Call for a free estimate.">
   <title>Arlington Electrical Contracting Inc. — Residential & Commercial</title>
   <link rel="icon" href="/assets/images/shared/arlington-mark.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/lighting-scene.css">
-  <script src="/assets/card-reveal.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+  <script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.lightsReady)document.documentElement.classList.remove("js")},5000)</script>
+  <link rel="stylesheet" href="/assets/lighting-scene.css?v=cc0d2278">
+  <script src="/assets/card-reveal.js?v=68769160" defer></script>
 </head>
 <body>
 <a class="skip" href="#services">Skip to services</a>
@@ -32,231 +33,333 @@
         <button class="menu-toggle icon-button" type="button" aria-label="Open menu" aria-controls="menu" aria-expanded="false"><span></span><span></span></button>
       </div>
     </header>
-    <div class="hero-bottom hero-enter">
-      <div>
-        <p class="kicker"><span class="status-dot"></span> Residential &amp; commercial electrical</p>
+    <div class="hero-bottom">
+      <div class="hero-copy">
+        <h1 class="hero-heading"><span><span class="hl">Good work.</span></span> <span><span class="hl">Brighter spaces.</span></span></h1>
         <p class="hero-description">Lighting, power, and electrical work for homes and businesses.</p>
-        <button class="pill light hero-estimate" type="button" data-estimate>
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A18 18 0 0 1 4.1 6.2 2 2 0 0 1 6.1 4h3a2 2 0 0 1 2 1.7l.4 2.9a2 2 0 0 1-.6 1.7l-1.2 1.2a14 14 0 0 0 4.8 4.8l1.2-1.2a2 2 0 0 1 1.7-.6l2.9.4a2 2 0 0 1 1.7 2Z"/></svg>
-          Get a free estimate
-        </button>
-        <p class="hero-trust">Family-owned <span aria-hidden="true">·</span> Licensed &amp; insured</p>
+        <div class="hero-actions">
+          <button class="pill light hero-estimate" type="button" data-estimate>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A18 18 0 0 1 4.1 6.2 2 2 0 0 1 6.1 4h3a2 2 0 0 1 2 1.7l.4 2.9a2 2 0 0 1-.6 1.7l-1.2 1.2a14 14 0 0 0 4.8 4.8l1.2-1.2a2 2 0 0 1 1.7-.6l2.9.4a2 2 0 0 1 1.7 2Z"/></svg>
+            Get a free estimate
+          </button>
+          <a class="phone-link" href="tel:+16312630792">631-263-0792</a>
+        </div>
       </div>
-      <div class="reel-controls">
-        <span>Arlington project reel</span>
-        <button class="video-toggle icon-button" type="button" aria-label="Play project reel" hidden>
-          <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor" aria-hidden="true"><path class="play-icon" d="M5 2.5 13 8l-8 5.5z"/><path class="pause-icon" d="M4.5 3.5h2.25v9H4.5zm4.75 0h2.25v9H9.25z"/></svg>
+      <div class="hero-side">
+        <button class="light-switch" type="button" role="switch" aria-checked="true" aria-label="Lights">
+          <span class="light-plate" aria-hidden="true"><span class="light-paddle"></span></span>
+          <span class="light-label" aria-hidden="true">Lights <span class="light-state">on</span></span>
         </button>
-        <a href="#intro" class="icon-button down" aria-label="Scroll below the hero">↓</a>
+        <div class="reel-controls">
+          <span>Arlington project reel</span>
+          <button class="video-toggle icon-button" type="button" aria-label="Play project reel" hidden>
+            <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor" aria-hidden="true"><path class="play-icon" d="M5 2.5 13 8l-8 5.5z"/><path class="pause-icon" d="M4.5 3.5h2.25v9H4.5zm4.75 0h2.25v9H9.25z"/></svg>
+          </button>
+          <a href="#work" class="icon-button down" aria-label="Scroll to our work">↓</a>
+        </div>
       </div>
     </div>
   </section>
-  <h1 class="intro-heading" id="intro"><span>Good work.</span> <span>Brighter spaces.</span></h1>
-  <section class="work section-pad" id="work" aria-labelledby="work-heading">
-    <div class="work-intro-frame">
-      <div class="work-intro reveal">
-        <div class="work-intro-title">
-          <p class="work-label"><span>01</span> / Selected work</p>
-          <h2 id="work-heading">See the difference.</h2>
-        </div>
-        <p class="work-intro-description">Lighting, home entertainment, and the wiring behind it all.</p>
-      </div>
+  <section class="spec" aria-label="About Arlington Electrical">
+    <div class="spec-grid">
+      <div><strong>Family owned</strong><span>And operated</span></div>
+      <div><strong>Licensed</strong><span>And insured</span></div>
+      <div><strong>Homes &amp; businesses</strong><span>Residential and commercial</span></div>
+      <div><strong>Free estimates</strong><span>Start with a call</span></div>
     </div>
-    <div class="project-categories">
-      <details class="project-category" open>
-        <summary>
-          <img src="/assets/images/selected-work/arlington-bathroom-sconces.webp" alt="" width="96" height="56" loading="lazy">
-          <span class="project-category-name" id="projects-interior">Interior lighting</span>
-          <span class="project-category-count">3 projects</span>
-          <span class="service-indicator" aria-hidden="true"></span>
-        </summary>
-        <div class="project-gallery">
-          <div class="project-rail" role="region" aria-labelledby="projects-interior" tabindex="0">
-            <article class="project-card">
-              <img src="/assets/images/selected-work/arlington-bathroom-sconces.webp" alt="Lit vanity sconces and shower accent lighting in a dark-tiled bathroom" loading="lazy">
-              <div class="project-card-copy">
-                <span class="project-card-index">01 / 03</span>
-                <h3>Bathroom accent lighting</h3>
+  </section>
+  <section class="kpis" aria-labelledby="kpis-heading" data-kpis>
+    <div class="kpis-inner">
+      <h2 id="kpis-heading" class="kpis-title">Our track record.</h2>
+      <ul class="kpi-grid">
+        <li class="kpi"><span class="kpi-num" data-count="20" data-suffix="+"><span aria-hidden="true">0+</span><span class="sr-only">Over 20</span></span><span class="kpi-label"><span class="kpi-logo"><img src="/assets/images/shared/citymd-logo.png" alt="CityMD" width="431" height="69" loading="lazy"></span>locations</span></li>
+        <li class="kpi"><span class="kpi-num" data-count="19" data-since="2007" data-suffix=""><span aria-hidden="true">0</span><span class="sr-only">19 years in business</span></span><span class="kpi-label">years in business, established 2007</span></li>
+        <li class="kpi"><span class="kpi-num" data-count="15" data-suffix="+"><span aria-hidden="true">0+</span><span class="sr-only">At least 15</span></span><span class="kpi-label">new houses in the last 2&ndash;3 years</span></li>
+        <li class="kpi"><span class="kpi-num" data-count="50" data-suffix="+"><span aria-hidden="true">0+</span><span class="sr-only">More than 50</span></span><span class="kpi-label">renovations: kitchens and bathrooms</span></li>
+      </ul>
+    </div>
+  </section>
+  <section class="work section-pad" id="work" aria-labelledby="work-heading">
+    <div class="work-intro reveal">
+      <div class="work-intro-title">
+        <h2 id="work-heading">See the difference.</h2>
+      </div>
+      <p class="work-intro-description">Lighting, home entertainment, and the wiring behind it all.</p>
+    </div>
+    <div class="showcase" data-showcase>
+      <div class="showcase-body">
+        <div class="showcase-photo">
+          <div class="showcase-track" data-service="Interior lighting">
+            <h3 class="showcase-track-title">Interior lighting</h3>
+            <article class="showcase-slide">
+              <img src="/assets/images/selected-work/arlington-bathroom-sconces.webp" alt="Lit vanity sconces and shower accent lighting in a dark-tiled bathroom" loading="lazy" decoding="async">
+              <div class="showcase-slide-copy">
+                <h4>Bathroom accent lighting</h4>
                 <p>Vanity sconces and accent lights bring out the texture of the tile.</p>
               </div>
             </article>
-            <article class="project-card">
-              <img src="/assets/images/selected-work/arlington-honeycomb.webp" alt="Honeycomb LED fixtures installed overhead" loading="lazy">
-              <div class="project-card-copy">
-                <span class="project-card-index">02 / 03</span>
-                <h3>Honeycomb ceiling lighting</h3>
+            <article class="showcase-slide">
+              <img src="/assets/images/selected-work/arlington-honeycomb.webp" alt="Honeycomb LED fixtures installed overhead" loading="lazy" decoding="async">
+              <div class="showcase-slide-copy">
+                <h4>Honeycomb ceiling lighting</h4>
                 <p>Interlocking LED fixtures installed across a garage ceiling.</p>
               </div>
             </article>
-            <article class="project-card project-card-stairwell">
-              <img src="/assets/images/selected-work/arlington-stairwell-pendants.webp" alt="Cluster of hanging lights in a stairwell" loading="lazy">
-              <div class="project-card-copy">
-                <span class="project-card-index">03 / 03</span>
-                <h3>Stairwell pendants</h3>
+            <article class="showcase-slide is-tall">
+              <img src="/assets/images/selected-work/arlington-stairwell-pendants.webp" alt="Cluster of hanging lights in a stairwell" loading="lazy" decoding="async">
+              <div class="showcase-slide-copy">
+                <h4>Stairwell pendants</h4>
                 <p>A cluster of pendants hangs at different heights above the staircase.</p>
               </div>
             </article>
           </div>
-          <div class="project-controls" hidden>
-            <button class="icon-button" type="button" data-project-step="-1" aria-label="Previous project in Interior lighting">←</button>
-            <span class="project-count" aria-live="polite">1 of 3</span>
-            <button class="icon-button" type="button" data-project-step="1" aria-label="Next project in Interior lighting">→</button>
-          </div>
-        </div>
-      </details>
-      <details class="project-category">
-        <summary>
-          <img src="/assets/images/selected-work/arlington-kitchen-globe-pendants.webp" alt="" width="96" height="56" loading="lazy">
-          <span class="project-category-name" id="projects-kitchen">Kitchen lighting</span>
-          <span class="project-category-count">3 projects</span>
-          <span class="service-indicator" aria-hidden="true"></span>
-        </summary>
-        <div class="project-gallery">
-          <div class="project-rail" role="region" aria-labelledby="projects-kitchen" tabindex="0">
-            <article class="project-card">
-              <img src="/assets/images/selected-work/arlington-kitchen-globe-pendants.webp" alt="Three glass globe pendants above a kitchen island" loading="lazy">
-              <div class="project-card-copy">
-                <span class="project-card-index">01 / 03</span>
-                <h3>Globe pendants over the island</h3>
+          <div class="showcase-track" data-service="Kitchen lighting">
+            <h3 class="showcase-track-title">Kitchen lighting</h3>
+            <article class="showcase-slide">
+              <img src="/assets/images/selected-work/arlington-kitchen-globe-pendants.webp" alt="Three glass globe pendants above a kitchen island" loading="lazy" decoding="async">
+              <div class="showcase-slide-copy">
+                <h4>Globe pendants over the island</h4>
                 <p>Globe pendants light the island, with recessed fixtures across the ceiling.</p>
               </div>
             </article>
-            <article class="project-card">
-              <img src="/assets/images/selected-work/arlington-kitchen-island.webp" alt="Recessed ceiling lights in a bright kitchen with a long island" loading="lazy">
-              <div class="project-card-copy">
-                <span class="project-card-index">02 / 03</span>
-                <h3>Recessed kitchen lighting</h3>
+            <article class="showcase-slide">
+              <img src="/assets/images/selected-work/arlington-kitchen-island.webp" alt="Recessed ceiling lights in a bright kitchen with a long island" loading="lazy" decoding="async">
+              <div class="showcase-slide-copy">
+                <h4>Recessed kitchen lighting</h4>
                 <p>Recessed fixtures spread light across the island and surrounding counters.</p>
               </div>
             </article>
-            <article class="project-card">
-              <img src="/assets/images/selected-work/arlington-kitchen-dark-island.webp" alt="Kitchen with recessed fixtures and a dark island" loading="lazy">
-              <div class="project-card-copy">
-                <span class="project-card-index">03 / 03</span>
-                <h3>Kitchen task lighting</h3>
+            <article class="showcase-slide">
+              <img src="/assets/images/selected-work/arlington-kitchen-dark-island.webp" alt="Kitchen with recessed fixtures and a dark island" loading="lazy" decoding="async">
+              <div class="showcase-slide-copy">
+                <h4>Kitchen task lighting</h4>
                 <p>Recessed lighting covers the island and the surrounding work areas.</p>
               </div>
             </article>
           </div>
-          <div class="project-controls" hidden>
-            <button class="icon-button" type="button" data-project-step="-1" aria-label="Previous project in Kitchen lighting">←</button>
-            <span class="project-count" aria-live="polite">1 of 3</span>
-            <button class="icon-button" type="button" data-project-step="1" aria-label="Next project in Kitchen lighting">→</button>
-          </div>
-        </div>
-      </details>
-      <details class="project-category">
-        <summary>
-          <img src="/assets/images/selected-work/arlington-living-room-tv.webp" alt="" width="96" height="56" loading="lazy">
-          <span class="project-category-name" id="projects-tv">TV &amp; entertainment</span>
-          <span class="project-category-count">2 projects</span>
-          <span class="service-indicator" aria-hidden="true"></span>
-        </summary>
-        <div class="project-gallery">
-          <div class="project-rail" role="region" aria-labelledby="projects-tv" tabindex="0">
-            <article class="project-card">
-              <img src="/assets/images/selected-work/arlington-living-room-tv.webp" alt="Wall-mounted television above a wood console facing a sectional" loading="lazy">
-              <div class="project-card-copy">
-                <span class="project-card-index">01 / 02</span>
-                <h3>Living room TV setup</h3>
+          <div class="showcase-track" data-service="TV &amp; entertainment">
+            <h3 class="showcase-track-title">TV &amp; entertainment</h3>
+            <article class="showcase-slide">
+              <img src="/assets/images/selected-work/arlington-living-room-tv.webp" alt="Wall-mounted television above a wood console facing a sectional" loading="lazy" decoding="async">
+              <div class="showcase-slide-copy">
+                <h4>Living room TV setup</h4>
                 <p>A wall-mounted TV sits above a low console in a finished seating area.</p>
               </div>
             </article>
-            <article class="project-card">
-              <img src="/assets/images/selected-work/arlington-recessed-tv-wall.webp" alt="Wall-mounted television centered on a gray wall" loading="lazy">
-              <div class="project-card-copy">
-                <span class="project-card-index">02 / 02</span>
-                <h3>TV wall installation</h3>
+            <article class="showcase-slide">
+              <img src="/assets/images/selected-work/arlington-recessed-tv-wall.webp" alt="Wall-mounted television centered on a gray wall" loading="lazy" decoding="async">
+              <div class="showcase-slide-copy">
+                <h4>TV wall installation</h4>
                 <p>A wall-mounted TV anchors this recessed entertainment area.</p>
               </div>
             </article>
           </div>
-          <div class="project-controls" hidden>
-            <button class="icon-button" type="button" data-project-step="-1" aria-label="Previous project in TV &amp; entertainment">←</button>
-            <span class="project-count" aria-live="polite">1 of 2</span>
-            <button class="icon-button" type="button" data-project-step="1" aria-label="Next project in TV &amp; entertainment">→</button>
-          </div>
-        </div>
-      </details>
-      <details class="project-category">
-        <summary>
-          <img src="/assets/images/selected-work/arlington-exterior.webp" alt="" width="96" height="56" loading="lazy">
-          <span class="project-category-name" id="projects-exterior">Exterior lighting</span>
-          <span class="project-category-count">1 project</span>
-          <span class="service-indicator" aria-hidden="true"></span>
-        </summary>
-        <div class="project-gallery">
-          <div class="project-rail" role="region" aria-labelledby="projects-exterior" tabindex="0">
-            <article class="project-card">
-              <img src="/assets/images/selected-work/arlington-exterior.webp" alt="Exterior lighting illuminating a home at night" loading="lazy">
-              <div class="project-card-copy">
-                <span class="project-card-index">01 / 01</span>
-                <h3>Exterior lighting</h3>
+          <div class="showcase-track" data-service="Exterior lighting">
+            <h3 class="showcase-track-title">Exterior lighting</h3>
+            <article class="showcase-slide">
+              <img src="/assets/images/selected-work/arlington-exterior.webp" alt="Exterior lighting illuminating a home at night" loading="lazy" decoding="async">
+              <div class="showcase-slide-copy">
+                <h4>Exterior lighting</h4>
                 <p>Exterior fixtures illuminate the front of the home after dark.</p>
               </div>
             </article>
           </div>
-          <div class="project-controls" hidden>
-            <button class="icon-button" type="button" data-project-step="-1" aria-label="Previous project in Exterior lighting">←</button>
-            <span class="project-count" aria-live="polite">1 of 1</span>
-            <button class="icon-button" type="button" data-project-step="1" aria-label="Next project in Exterior lighting">→</button>
-          </div>
-        </div>
-      </details>
-      <details class="project-category">
-        <summary>
-          <img src="/assets/images/shared/arlington-panel-pair.webp" alt="" width="96" height="56" loading="lazy">
-          <span class="project-category-name" id="projects-panels">Panels &amp; wiring</span>
-          <span class="project-category-count">2 projects</span>
-          <span class="service-indicator" aria-hidden="true"></span>
-        </summary>
-        <div class="project-gallery">
-          <div class="project-rail" role="region" aria-labelledby="projects-panels" tabindex="0">
-            <article class="project-card project-card-contain">
-              <img src="/assets/images/shared/arlington-panel-pair.webp" alt="Rough-in wiring on the left and a breaker panel close-up on the right" loading="lazy">
-              <div class="project-card-copy">
-                <span class="project-card-index">01 / 02</span>
-                <h3>Panel work in progress</h3>
+          <div class="showcase-track" data-service="Panels &amp; wiring">
+            <h3 class="showcase-track-title">Panels &amp; wiring</h3>
+            <article class="showcase-slide is-contain">
+              <img src="/assets/images/shared/arlington-panel-pair.webp" alt="Rough-in wiring on the left and a breaker panel close-up on the right" loading="lazy" decoding="async">
+              <div class="showcase-slide-copy">
+                <h4>Panel work in progress</h4>
                 <p>Rough-in wiring on the left and a closer look at the breaker panel on the right.</p>
               </div>
             </article>
-            <article class="project-card project-card-contain">
-              <img src="/assets/images/selected-work/arlington-surface-panel.webp" alt="A metal panel enclosure with conduit against a plywood wall" loading="lazy">
-              <div class="project-card-copy">
-                <span class="project-card-index">02 / 02</span>
-                <h3>Surface-mounted panel</h3>
+            <article class="showcase-slide is-contain">
+              <img src="/assets/images/selected-work/arlington-surface-panel.webp" alt="A metal panel enclosure with conduit against a plywood wall" loading="lazy" decoding="async">
+              <div class="showcase-slide-copy">
+                <h4>Surface-mounted panel</h4>
                 <p>A wall-mounted panel enclosure with conduit visible along the sides.</p>
               </div>
             </article>
           </div>
-          <div class="project-controls" hidden>
-            <button class="icon-button" type="button" data-project-step="-1" aria-label="Previous project in Panels &amp; wiring">←</button>
-            <span class="project-count" aria-live="polite">1 of 2</span>
-            <button class="icon-button" type="button" data-project-step="1" aria-label="Next project in Panels &amp; wiring">→</button>
-          </div>
         </div>
-      </details>
+        <div class="showcase-caption" hidden>
+          <h3 class="showcase-title"></h3>
+          <p class="showcase-description"></p>
+        </div>
+        <div class="showcase-controls" hidden>
+          <button class="icon-button" type="button" data-step="-1" aria-label="Previous project"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg></button>
+          <span class="showcase-count"></span>
+          <button class="icon-button" type="button" data-step="1" aria-label="Next project"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        </div>
+        <div class="showcase-thumbs" hidden></div>
+        <p class="sr-only" role="status" data-showcase-status></p>
+      </div>
     </div>
   </section>
-  <section class="services section-pad ruled-section" id="services" aria-labelledby="services-heading">
-    <div class="service-intro"><p class="kicker">02 / What we do</p><h2 id="services-heading">Electrical work<br>for every space.</h2><p>From a single fixture to the wiring behind a renovation.</p></div>
-    <div class="service-list">
-      <details name="services" open>
-        <summary><span class="number">01</span><h3>Lighting, inside &amp; out</h3><span class="service-indicator" aria-hidden="true"></span></summary>
-        <div class="service-body"><p>Recessed lighting, pendants, chandeliers, accent LEDs, and outdoor fixtures.</p><button type="button" class="text-button" data-estimate="Indoor lighting">Discuss a lighting project ↗</button></div>
-      </details>
-      <details name="services">
-        <summary><span class="number">02</span><h3>Outlets &amp; switches</h3><span class="service-indicator" aria-hidden="true"></span></summary>
-        <div class="service-body"><p>New outlets and switches, replacements, and wiring for a layout that fits how you use the space.</p><button type="button" class="text-button" data-estimate="Outlets & switches">Discuss outlets and switches ↗</button></div>
-      </details>
-      <details name="services">
-        <summary><span class="number">03</span><h3>Panels &amp; wiring</h3><span class="service-indicator" aria-hidden="true"></span></summary>
-        <div class="service-body"><p>Panel work, circuit additions, and electrical rough-ins for new builds and renovations.</p><button type="button" class="text-button" data-estimate="Panel work">Discuss panel work ↗</button></div>
-      </details>
-      <details name="services">
-        <summary><span class="number">04</span><h3>TV &amp; entertainment</h3><span class="service-indicator" aria-hidden="true"></span></summary>
-        <div class="service-body"><p>TV mounting and wiring for clean, practical home entertainment setups.</p><button type="button" class="text-button" data-estimate="TV & entertainment setup">Discuss a TV setup ↗</button></div>
-      </details>
+  <section class="services" id="services" aria-labelledby="services-heading" data-services>
+    <div class="services-inner">
+      <div class="svc-head"><h2 id="services-heading">What are you working on?</h2><p>From a single fixture to the wiring behind a renovation.</p></div>
+      <div class="svc-grid">
+        <svg class="svc-wires" aria-hidden="true" focusable="false"></svg>
+        <div class="svc-art">
+          <div class="svc-frame">
+            <svg viewBox="0 0 1000 800" role="img" aria-label="Isometric cutaway of a home with a living room, kitchen and hallway, showing kitchen pendant lights, a hallway outlet and switch, a breaker panel and a wall-mounted TV.">
+  <polygon class="sh" fill="#17304a" points="389.7,305.2 904.1,602.2 557.3,802.4 42.9,505.4" opacity=".07"/>
+  <polygon class="iso" fill="#d9c8a3" points="100.1,498.8 557.3,762.8 557.3,732.0 100.1,468.0"/>
+  <polygon class="iso" fill="#c3ae83" points="900.3,564.8 557.3,762.8 557.3,732.0 900.3,534.0"/>
+  <polygon class="iso" fill="#f4e8cc" points="443.0,270.0 900.3,534.0 557.3,732.0 100.1,468.0"/>
+  <polyline class="floorln" fill="none" points="481.1,292.0 138.2,490.0"/>
+  <polyline class="floorln" fill="none" points="519.2,314.0 176.3,512.0"/>
+  <polyline class="floorln" fill="none" points="557.3,336.0 214.4,534.0"/>
+  <polyline class="floorln" fill="none" points="595.4,358.0 252.5,556.0"/>
+  <polyline class="floorln" fill="none" points="633.5,380.0 290.6,578.0"/>
+  <polyline class="floorln" fill="none" points="671.6,402.0 328.7,600.0"/>
+  <polyline class="floorln" fill="none" points="709.7,424.0 366.8,622.0"/>
+  <polyline class="floorln" fill="none" points="747.8,446.0 404.9,644.0"/>
+  <polyline class="floorln" fill="none" points="785.9,468.0 443.0,666.0"/>
+  <polyline class="floorln" fill="none" points="824.1,490.0 481.1,688.0"/>
+  <polyline class="floorln" fill="none" points="862.2,512.0 519.2,710.0"/>
+  <polyline class="floorln" fill="none" points="366.8,314.0 824.1,578.0"/>
+  <polyline class="floorln" fill="none" points="290.6,358.0 747.8,622.0"/>
+  <polyline class="floorln" fill="none" points="214.4,402.0 671.6,666.0"/>
+  <polyline class="floorln" fill="none" points="138.2,446.0 595.4,710.0"/>
+  <polygon class="iso" fill="#fbf3e1" points="427.8,278.8 885.0,542.8 885.0,314.0 427.8,50.0"/><polygon class="iso" fill="#e3d4b3" points="900.3,534.0 885.0,542.8 885.0,314.0 900.3,305.2"/><polygon class="iso" fill="#fffdf6" points="443.0,41.2 900.3,305.2 885.0,314.0 427.8,50.0"/>
+  <polygon class="iso" fill="#eadcbf" points="100.1,468.0 115.3,476.8 115.3,248.0 100.1,239.2"/><polygon class="iso" fill="#efe2c5" points="443.0,287.6 115.3,476.8 115.3,248.0 443.0,58.8"/><polygon class="iso" fill="#fffdf6" points="427.8,50.0 443.0,58.8 115.3,248.0 100.1,239.2"/>
+  <polygon class="iso1" fill="#e8d9b8" points="443.0,287.6 885.0,542.8 885.0,527.4 443.0,272.2"/>
+  <polygon class="iso1" fill="#dccaa3" points="443.0,287.6 115.3,476.8 115.3,461.4 443.0,272.2"/>
+  <polygon class="iso1" fill="#f2e5c6" points="443.0,272.2 885.0,527.4 885.0,481.2 443.0,226.0"/>
+  <polygon class="iso" fill="#e8d3a6" points="462.1,298.6 534.5,340.4 534.5,151.2 462.1,109.4"/>
+  <polygon class="iso1" fill="#f1e2bf" points="471.6,293.1 524.9,323.9 524.9,242.5 471.6,211.7"/>
+  <polygon class="iso1" fill="#f1e2bf" points="471.6,198.5 524.9,229.3 524.9,158.9 471.6,128.1"/>
+  <circle class="iso1" fill="#17304a" cx="523.0" cy="241.4" r="3"/>
+  <polygon class="iso lit-o" fill="#fff" points="553.5,223.8 570.7,233.7 570.7,194.1 553.5,184.2"/>
+  <polygon class="iso1" fill="#d9c8a3" points="559.6,216.3 564.9,219.4 564.9,201.8 559.6,198.7"/>
+  <polygon class="iso lit-o" fill="#fff" points="553.5,307.4 574.5,319.5 574.5,279.9 553.5,267.8"/>
+  <polygon class="iso1" fill="#17304a" points="559.2,288.7 568.7,294.2 568.7,284.5 559.2,279.0"/>
+  <polygon class="iso1" fill="#17304a" points="559.2,301.9 568.7,307.4 568.7,297.7 559.2,292.2"/>
+  <polygon class="iso" fill="#dfeaf5" points="759.3,342.6 812.6,373.4 812.6,294.2 759.3,263.4"/>
+  <polyline class="iso1" fill="none" points="785.9,358.0 785.9,278.8"/>
+  <polyline class="iso1" fill="none" points="759.3,303.0 812.6,333.8"/>
+  <polygon class="iso" fill="#fffdf6" points="755.5,344.8 816.4,380.0 816.4,373.4 755.5,338.2"/>
+  <polygon class="iso1" fill="#f6e4b6" points="595.4,261.2 625.9,278.8 625.9,234.8 595.4,217.2"/>
+  <polygon class="iso" fill="#dfeaf5" points="347.7,232.6 294.4,263.4 294.4,175.4 347.7,144.6"/>
+  <polyline class="iso1" fill="none" points="321.1,248.0 321.1,160.0"/>
+  <polyline class="iso1" fill="none" points="347.7,188.6 294.4,219.4"/>
+  <polygon class="iso" fill="#fffdf6" points="351.5,234.8 290.6,270.0 290.6,263.4 351.5,228.2"/>
+  <polygon class="iso1" fill="#f6e4b6" points="153.4,331.6 126.7,347.0 126.7,298.6 153.4,283.2"/>
+  <polyline class="conduit" fill="none" points="389.7,146.8 389.7,105.0 443.0,74.2"/>
+  <polyline class="conduit" fill="none" points="443.0,74.2 563.0,143.5 563.0,189.7"/>
+  <polyline class="conduit" fill="none" points="563.0,229.3 563.0,273.3"/>
+  <polygon class="iso" fill="#cddcec" points="359.2,243.6 369.8,249.8 369.8,166.2 359.2,160.0"/><polygon class="iso" fill="#b3c8de" points="427.0,216.8 369.8,249.8 369.8,166.2 427.0,133.2"/><polygon class="iso" fill="#e3edf7" points="416.3,127.0 427.0,133.2 369.8,166.2 359.2,160.0"/>
+  <polygon class="iso1" fill="#9fb4c9" points="421.3,213.5 375.6,239.9 375.6,169.5 421.3,143.1"/>
+  <polygon class="iso1 lit-pb" fill="#e9f0f7" points="415.6,210.2 400.3,219.0 400.3,211.5 415.6,202.7"/>
+  <polygon class="iso1 lit-pb" fill="#e9f0f7" points="394.6,222.3 379.4,231.1 379.4,223.6 394.6,214.8"/>
+  <polygon class="iso1 lit-pb" fill="#e9f0f7" points="415.6,198.3 400.3,207.1 400.3,199.6 415.6,190.8"/>
+  <polygon class="iso1 lit-pb" fill="#e9f0f7" points="394.6,210.4 379.4,219.2 379.4,211.7 394.6,202.9"/>
+  <polygon class="iso1 lit-pb" fill="#e9f0f7" points="415.6,186.4 400.3,195.2 400.3,187.7 415.6,178.9"/>
+  <polygon class="iso1 lit-pb" fill="#e9f0f7" points="394.6,198.5 379.4,207.3 379.4,199.8 394.6,191.0"/>
+  <polygon class="iso1 lit-pb" fill="#e9f0f7" points="415.6,174.5 400.3,183.3 400.3,175.8 415.6,167.0"/>
+  <polygon class="iso1 lit-pb" fill="#e9f0f7" points="394.6,186.6 379.4,195.4 379.4,187.9 394.6,179.1"/>
+  <polygon class="iso1 lit-pb" fill="#e9f0f7" points="415.6,162.6 400.3,171.4 400.3,164.0 415.6,155.2"/>
+  <polygon class="iso1 lit-pb" fill="#e9f0f7" points="394.6,174.7 379.4,183.5 379.4,176.1 394.6,167.3"/>
+  <polygon class="iso1" fill="#17304a" points="415.6,156.5 379.4,177.4 379.4,170.3 415.6,149.4"/>
+  <polygon class="iso" fill="#e2c791" points="138.2,463.6 176.3,485.6 176.3,430.6 138.2,408.6"/><polygon class="iso" fill="#cfae72" points="321.1,402.0 176.3,485.6 176.3,430.6 321.1,347.0"/><polygon class="iso" fill="#f1dcb4" points="283.0,325.0 321.1,347.0 176.3,430.6 138.2,408.6"/>
+  <polygon class="iso" fill="#1c2a3d" points="149.6,369.0 157.2,373.4 157.2,281.0 149.6,276.6"/><polygon class="iso" fill="#1c2a3d" points="279.1,303.0 157.2,373.4 157.2,281.0 279.1,210.6"/><polygon class="iso" fill="#2a3a50" points="271.5,206.2 279.1,210.6 157.2,281.0 149.6,276.6"/>
+  <polygon class="iso1 lit-t" fill="#1f3550" points="275.3,300.8 161.0,366.8 161.0,283.2 275.3,217.2"/>
+  <polygon class="tvglare" fill="#fff" points="264.3,246.0 226.2,268.0 249.0,237.2 264.3,228.4" opacity=".18"/>
+  <polygon class="iso" fill="#a9bbd0" points="176.3,386.6 189.6,394.3 189.6,385.5 176.3,377.8"/><polygon class="iso" fill="#8aa0b9" points="258.2,354.7 189.6,394.3 189.6,385.5 258.2,345.9"/><polygon class="iso" fill="#c3d2e2" points="244.9,338.2 258.2,345.9 189.6,385.5 176.3,377.8"/>
+  <polygon class="iso1" fill="#d8e4f0" points="328.7,392.8 458.2,467.6 290.6,564.4 161.0,489.6"/>
+  <polygon class="iso" fill="#e2c791" points="241.0,470.2 267.7,485.6 267.7,454.8 241.0,439.4"/><polygon class="iso" fill="#cfae72" points="321.1,454.8 267.7,485.6 267.7,454.8 321.1,424.0"/><polygon class="iso" fill="#f1dcb4" points="294.4,408.6 321.1,424.0 267.7,454.8 241.0,439.4"/>
+  <polygon class="iso" fill="#cddcec" points="248.7,514.2 298.2,542.8 298.2,512.0 248.7,483.4"/><polygon class="iso" fill="#b3c8de" points="420.1,472.4 298.2,542.8 298.2,512.0 420.1,441.6"/><polygon class="iso" fill="#e3edf7" points="370.6,413.0 420.1,441.6 298.2,512.0 248.7,483.4"/>
+  <polygon class="iso" fill="#cddcec" points="370.6,443.8 420.1,472.4 420.1,415.2 370.6,386.6"/><polygon class="iso" fill="#b3c8de" points="431.6,465.8 420.1,472.4 420.1,415.2 431.6,408.6"/><polygon class="iso" fill="#e3edf7" points="382.0,380.0 431.6,408.6 420.1,415.2 370.6,386.6"/>
+  <polygon class="iso" fill="#cddcec" points="309.6,448.2 343.9,468.0 343.9,454.8 309.6,435.0"/><polygon class="iso" fill="#b3c8de" points="401.1,435.0 343.9,468.0 343.9,454.8 401.1,421.8"/><polygon class="iso" fill="#e9f0f7" points="366.8,402.0 401.1,421.8 343.9,454.8 309.6,435.0"/>
+  <polygon class="iso" fill="#cddcec" points="252.5,481.2 286.8,501.0 286.8,487.8 252.5,468.0"/><polygon class="iso" fill="#b3c8de" points="343.9,468.0 286.8,501.0 286.8,487.8 343.9,454.8"/><polygon class="iso" fill="#e9f0f7" points="309.6,435.0 343.9,454.8 286.8,487.8 252.5,468.0"/>
+  <polygon class="iso" fill="#cddcec" points="283.0,503.2 298.2,512.0 298.2,468.0 283.0,459.2"/><polygon class="iso" fill="#b3c8de" points="420.1,441.6 298.2,512.0 298.2,468.0 420.1,397.6"/><polygon class="iso" fill="#e3edf7" points="404.9,388.8 420.1,397.6 298.2,468.0 283.0,459.2"/>
+  <polygon class="iso" fill="#cddcec" points="237.2,520.8 286.8,549.4 286.8,492.2 237.2,463.6"/><polygon class="iso" fill="#b3c8de" points="298.2,542.8 286.8,549.4 286.8,492.2 298.2,485.6"/><polygon class="iso" fill="#e3edf7" points="248.7,457.0 298.2,485.6 286.8,492.2 237.2,463.6"/>
+  <polygon class="iso" fill="#e2c791" points="142.0,474.6 164.8,487.8 164.8,454.8 142.0,441.6"/><polygon class="iso" fill="#cfae72" points="187.7,474.6 164.8,487.8 164.8,454.8 187.7,441.6"/><polygon class="iso" fill="#f1dcb4" points="164.8,428.4 187.7,441.6 164.8,454.8 142.0,441.6"/>
+  <path class="leaf" d="M164.8 441.6Q171.1 410.8 193.5 380.0Q162.1 416.8 164.8 441.6Z"/>
+  <path class="leaf" d="M164.8 441.6Q170.3 407.8 191.7 374.0Q161.3 413.8 164.8 441.6Z"/>
+  <path class="leaf" d="M164.8 441.6Q180.2 416.0 179.7 390.4Q189.2 422.0 164.8 441.6Z"/>
+  <path class="leaf" d="M164.8 441.6Q171.5 423.7 162.2 405.8Q180.5 429.7 164.8 441.6Z"/>
+  <path class="leaf" d="M164.8 441.6Q161.5 425.1 142.1 408.6Q170.5 431.1 164.8 441.6Z"/>
+  <polygon class="iso" fill="#f1e4c4" points="576.4,413.0 774.5,527.4 774.5,430.6 576.4,316.2"/><polygon class="iso" fill="#d9c7a0" points="816.4,503.2 774.5,527.4 774.5,430.6 816.4,406.4"/><polygon class="iso" fill="#fffaf0" points="618.3,292.0 816.4,406.4 774.5,430.6 576.4,316.2"/>
+  <polyline class="iso1" fill="none" points="625.9,441.6 625.9,344.8"/>
+  <polyline class="iso1" fill="none" points="675.4,470.2 675.4,373.4"/>
+  <polyline class="iso1" fill="none" points="725.0,498.8 725.0,402.0"/>
+  <polyline class="iso" fill="none" points="595.4,340.4 606.9,347.0"/>
+  <polyline class="iso" fill="none" points="645.0,369.0 656.4,375.6"/>
+  <polyline class="iso" fill="none" points="694.5,397.6 705.9,404.2"/>
+  <polyline class="iso" fill="none" points="744.0,426.2 755.5,432.8"/>
+  <polygon class="iso" fill="#e6d6b2" points="566.8,317.3 772.6,436.1 772.6,427.3 566.8,308.5"/><polygon class="iso" fill="#d2bf94" points="820.2,408.6 772.6,436.1 772.6,427.3 820.2,399.8"/><polygon class="iso" fill="#fffdf6" points="614.5,281.0 820.2,399.8 772.6,427.3 566.8,308.5"/>
+  <polygon class="iso1" fill="#c3d2e2" points="641.1,318.0 694.5,348.8 671.6,362.0 618.3,331.2"/>
+  <polyline class="iso" fill="none" points="677.3,328.3 677.3,304.1 665.9,310.7"/>
+  <polygon class="iso" fill="#f1e4c4" points="599.2,259.0 713.5,325.0 713.5,263.4 599.2,197.4"/><polygon class="iso" fill="#d9c7a0" points="740.2,309.6 713.5,325.0 713.5,263.4 740.2,248.0"/><polygon class="iso" fill="#fffaf0" points="625.9,182.0 740.2,248.0 713.5,263.4 599.2,197.4"/>
+  <polyline class="iso1" fill="none" points="656.4,292.0 656.4,230.4"/>
+  <polygon class="iso" fill="#cfd9e4" points="778.3,538.4 831.7,569.2 831.7,366.8 778.3,336.0"/><polygon class="iso" fill="#b6c3d2" points="881.2,540.6 831.7,569.2 831.7,366.8 881.2,338.2"/><polygon class="iso" fill="#e6edf4" points="827.9,307.4 881.2,338.2 831.7,366.8 778.3,336.0"/>
+  <polyline class="iso1" fill="none" points="778.3,419.6 831.7,450.4"/>
+  <polyline class="iso" fill="none" points="785.9,410.8 785.9,366.8"/>
+  <polyline class="iso" fill="none" points="785.9,476.8 785.9,441.6"/>
+  <polygon class="sh" fill="#17304a" points="618.3,459.2 717.4,516.4 572.6,600.0 473.5,542.8" opacity=".06"/>
+  <polygon class="iso" fill="#e8edf3" points="511.6,538.4 564.9,569.2 564.9,472.4 511.6,441.6"/><polygon class="iso" fill="#cbd6e2" points="679.3,503.2 564.9,569.2 564.9,472.4 679.3,406.4"/><polygon class="iso" fill="#fffaf0" points="625.9,375.6 679.3,406.4 564.9,472.4 511.6,441.6"/>
+  <polyline class="iso1" fill="none" points="641.1,516.4 641.1,437.2"/>
+  <polyline class="iso1" fill="none" points="603.0,538.4 603.0,459.2"/>
+  <polygon class="iso" fill="#e6d6b2" points="504.0,441.6 564.9,476.8 564.9,468.0 504.0,432.8"/><polygon class="iso" fill="#d2bf94" points="686.9,406.4 564.9,476.8 564.9,468.0 686.9,397.6"/><polygon class="iso" fill="#fffdf6" points="625.9,362.4 686.9,397.6 564.9,468.0 504.0,432.8"/>
+  <polygon class="iso" fill="#cddcec" points="664.0,472.4 686.9,485.6 686.9,477.7 664.0,464.5"/><polygon class="iso" fill="#b3c8de" points="709.7,472.4 686.9,485.6 686.9,477.7 709.7,464.5"/><polygon class="iso" fill="#e3edf7" points="686.9,451.3 709.7,464.5 686.9,477.7 664.0,464.5"/>
+  <polyline class="iso1" fill="none" points="686.9,527.4 686.9,461.4"/>
+  <polyline class="iso1" fill="none" points="702.1,536.2 702.1,470.2"/>
+  <polyline class="iso1" fill="none" points="671.6,536.2 671.6,470.2"/>
+  <polyline class="iso1" fill="none" points="686.9,545.0 686.9,479.0"/>
+  <polygon class="iso" fill="#cddcec" points="633.5,490.0 656.4,503.2 656.4,495.3 633.5,482.1"/><polygon class="iso" fill="#b3c8de" points="679.3,490.0 656.4,503.2 656.4,495.3 679.3,482.1"/><polygon class="iso" fill="#e3edf7" points="656.4,468.9 679.3,482.1 656.4,495.3 633.5,482.1"/>
+  <polyline class="iso1" fill="none" points="656.4,545.0 656.4,479.0"/>
+  <polyline class="iso1" fill="none" points="671.6,553.8 671.6,487.8"/>
+  <polyline class="iso1" fill="none" points="641.1,553.8 641.1,487.8"/>
+  <polyline class="iso1" fill="none" points="656.4,562.6 656.4,496.6"/>
+  <polygon class="iso" fill="#cddcec" points="603.0,507.6 625.9,520.8 625.9,512.9 603.0,499.7"/><polygon class="iso" fill="#b3c8de" points="648.8,507.6 625.9,520.8 625.9,512.9 648.8,499.7"/><polygon class="iso" fill="#e3edf7" points="625.9,486.5 648.8,499.7 625.9,512.9 603.0,499.7"/>
+  <polyline class="iso1" fill="none" points="625.9,562.6 625.9,496.6"/>
+  <polyline class="iso1" fill="none" points="641.1,571.4 641.1,505.4"/>
+  <polyline class="iso1" fill="none" points="610.7,571.4 610.7,505.4"/>
+  <polyline class="iso1" fill="none" points="625.9,580.2 625.9,514.2"/>
+  <polygon class="iso" fill="#e2c791" points="545.9,325.0 553.5,329.4 553.5,320.6 545.9,316.2"/><polygon class="iso" fill="#cfae72" points="725.0,230.4 553.5,329.4 553.5,320.6 725.0,221.6"/><polygon class="iso" fill="#f1dcb4" points="717.4,217.2 725.0,221.6 553.5,320.6 545.9,316.2"/>
+  <line class="iso1" x1="629.7" y1="281.0" x2="629.7" y2="347.0"/>
+  <path class="iso" fill="#fffaf0" d="M610.7 370.0Q610.7 347.0 629.7 347.0Q648.7 347.0 648.7 370.0Z"/>
+  <circle class="iso lit-l" fill="#fff" cx="629.7" cy="374.0" r="5"/>
+  <line class="iso1" x1="595.4" y1="300.8" x2="595.4" y2="366.8"/>
+  <path class="iso" fill="#fffaf0" d="M576.4 389.8Q576.4 366.8 595.4 366.8Q614.4 366.8 614.4 389.8Z"/>
+  <circle class="iso lit-l" fill="#fff" cx="595.4" cy="393.8" r="5"/>
+  <line class="iso1" x1="561.1" y1="320.6" x2="561.1" y2="386.6"/>
+  <path class="iso" fill="#fffaf0" d="M542.1 409.6Q542.1 386.6 561.1 386.6Q580.1 386.6 580.1 409.6Z"/>
+  <circle class="iso lit-l" fill="#fff" cx="561.1" cy="413.6" r="5"/>
+  <polygon class="iso1" fill="none" points="625.9,366.4 625.9,366.4"/>
+            </svg><i class="svc-glow g-lighting" aria-hidden="true" style="left:44.5%;top:29.4%;width:30%;height:34%"></i><i class="svc-glow g-outlets" aria-hidden="true" style="left:50.3%;top:22.6%;width:12%;height:17%"></i><i class="svc-glow g-panels" aria-hidden="true" style="left:33.4%;top:14.3%;width:13%;height:20%"></i><i class="svc-glow g-tv" aria-hidden="true" style="left:10.2%;top:23.5%;width:24%;height:26%"></i><button type="button" class="svc-spot" data-svc="lighting" style="left:59.54%;top:46.4%" aria-label="Lighting: kitchen pendants" aria-pressed="true"><span class="svc-spot-dot" aria-hidden="true"></span><span class="svc-spot-tag" aria-hidden="true">Lighting</span></button><button type="button" class="svc-spot" data-svc="outlets" style="left:56.3%;top:31.14%" aria-label="Outlets and switches: hallway outlet and switch" aria-pressed="false"><span class="svc-spot-dot" aria-hidden="true"></span><span class="svc-spot-tag" aria-hidden="true">Outlets &amp; switches</span></button><button type="button" class="svc-spot" data-svc="panels" style="left:39.92%;top:24.26%" aria-label="Panels and wiring: breaker panel" aria-pressed="false"><span class="svc-spot-dot" aria-hidden="true"></span><span class="svc-spot-tag" aria-hidden="true">Panels &amp; wiring</span></button><button type="button" class="svc-spot" data-svc="tv" style="left:22.2%;top:36.5%" aria-label="TV and entertainment: wall-mounted TV" aria-pressed="false"><span class="svc-spot-dot" aria-hidden="true"></span><span class="svc-spot-tag" aria-hidden="true">TV &amp; entertainment</span></button>
+          </div>
+        </div>
+        <div class="svc-rows">
+      <div class="svc-row" data-svc="lighting" data-selected="true">
+        <h3><button type="button" class="svc-trigger" id="svc-t-lighting" aria-expanded="true" aria-controls="svc-p-lighting">
+          <svg class="svc-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3Z"/></svg><span>Lighting, inside &amp; out</span>
+          <svg class="svc-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button></h3>
+        <div class="svc-panel" id="svc-p-lighting" role="region" aria-labelledby="svc-t-lighting"><div class="svc-panel-inner"><p>Recessed lighting, pendants, chandeliers, accent LEDs, and outdoor fixtures.</p><button type="button" class="svc-cta" data-estimate="Indoor lighting">Discuss a lighting project ↗</button></div></div>
+      </div>
+      <div class="svc-row" data-svc="outlets">
+        <h3><button type="button" class="svc-trigger" id="svc-t-outlets" aria-expanded="false" aria-controls="svc-p-outlets">
+          <svg class="svc-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3.5" width="16" height="17" rx="4"/><circle cx="12" cy="9" r="2"/><circle cx="12" cy="15.5" r="2"/></svg><span>Outlets &amp; switches</span>
+          <svg class="svc-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button></h3>
+        <div class="svc-panel" id="svc-p-outlets" role="region" aria-labelledby="svc-t-outlets"><div class="svc-panel-inner"><p>New outlets and switches, replacements, and wiring for a layout that fits how you use the space.</p><button type="button" class="svc-cta" data-estimate="Outlets &amp; switches">Discuss outlets and switches ↗</button></div></div>
+      </div>
+      <div class="svc-row" data-svc="panels">
+        <h3><button type="button" class="svc-trigger" id="svc-t-panels" aria-expanded="false" aria-controls="svc-p-panels">
+          <svg class="svc-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 7h6M9 11h2.5M12.5 11H15M9 15h2.5M12.5 15H15"/></svg><span>Panels &amp; wiring</span>
+          <svg class="svc-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button></h3>
+        <div class="svc-panel" id="svc-p-panels" role="region" aria-labelledby="svc-t-panels"><div class="svc-panel-inner"><p>Panel work, circuit additions, and electrical rough-ins for new builds and renovations.</p><button type="button" class="svc-cta" data-estimate="Panel work">Discuss panel work ↗</button></div></div>
+      </div>
+      <div class="svc-row" data-svc="tv">
+        <h3><button type="button" class="svc-trigger" id="svc-t-tv" aria-expanded="false" aria-controls="svc-p-tv">
+          <svg class="svc-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2"/><path d="M9 20h6M12 16.5V20"/></svg><span>TV &amp; entertainment</span>
+          <svg class="svc-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button></h3>
+        <div class="svc-panel" id="svc-p-tv" role="region" aria-labelledby="svc-t-tv"><div class="svc-panel-inner"><p>TV mounting and wiring for clean, practical home entertainment setups.</p><button type="button" class="svc-cta" data-estimate="TV &amp; entertainment setup">Discuss a TV setup ↗</button></div></div>
+      </div>
+        </div>
+      </div>
     </div>
   </section>
   <section class="process section-pad ruled-section" id="process" aria-labelledby="process-heading">
@@ -264,21 +367,12 @@
       <figure><img src="/assets/images/shared/arlington-panel-pair.webp" alt="Arlington panel wiring and breaker work in progress" loading="lazy"><figcaption>Panel &amp; rough-in work</figcaption></figure>
       <figure><img src="/assets/images/process/arlington-kitchen-lighting.jpeg" alt="Arlington kitchen lighting with three pendant fixtures" loading="lazy"><figcaption>Kitchen lighting</figcaption></figure>
     </div>
-    <div class="process-copy"><p class="kicker">03 / Our approach</p><h2 id="process-heading">From first call<br>to lights on.</h2>
+    <div class="process-copy"><h2 id="process-heading">From first call<br>to lights on.</h2>
       <ol><li>Tell us what you’re working on.</li><li>Get a clear plan and estimate.</li><li>Set a time to get the work underway.</li></ol>
       <button type="button" class="pill" data-estimate>Talk through your project <span aria-hidden="true">↗</span></button>
     </div>
   </section>
   <div class="closing dark">
-    <section class="trust section-pad" aria-label="About Arlington Electrical">
-      <p class="kicker">04 / Arlington Electrical</p>
-      <div class="trust-grid">
-        <div><strong>Family owned</strong><span>And operated</span></div>
-        <div><strong>Licensed</strong><span>And insured</span></div>
-        <div><strong>Homes &amp; businesses</strong><span>Residential and commercial</span></div>
-        <div><strong>Free estimates</strong><span>Start with a call</span></div>
-      </div>
-    </section>
     <footer class="footer section-pad ruled-section" id="contact">
       <div class="footer-main">
         <div><p class="kicker">Have a project in mind?</p><h2>Let’s talk.</h2></div>
@@ -288,6 +382,7 @@
     </footer>
   </div>
 </main>
+<a class="call-bar" href="tel:+16312630792" aria-label="Call Arlington Electrical at 631-263-0792"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A18 18 0 0 1 4.1 6.2 2 2 0 0 1 6.1 4h3a2 2 0 0 1 2 1.7l.4 2.9a2 2 0 0 1-.6 1.7l-1.2 1.2a14 14 0 0 0 4.8 4.8l1.2-1.2a2 2 0 0 1 1.7-.6l2.9.4a2 2 0 0 1 1.7 2Z"/></svg>Call 631-263-0792</a>
 <dialog id="menu" class="menu-dialog dark" aria-labelledby="menu-title">
   <div class="menu-inner">
     <div class="menu-bar"><p id="menu-title" class="kicker">Arlington Electrical</p><button type="button" class="icon-button" data-close aria-label="Close menu">×</button></div>
