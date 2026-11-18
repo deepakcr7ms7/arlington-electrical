@@ -11,8 +11,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
   <script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.lightsReady)document.documentElement.classList.remove("js")},5000)</script>
-  <link rel="stylesheet" href="/assets/lighting-scene.css?v=cc0d2278">
-  <script src="/assets/card-reveal.js?v=68769160" defer></script>
+  <link rel="stylesheet" href="/assets/lighting-scene.css?v=f0ab7b8f">
+  <script src="/assets/card-reveal.js?v=1f2dd56c" defer></script>
 </head>
 <body>
 <a class="skip" href="#services">Skip to services</a>
@@ -395,12 +395,28 @@
     <button type="button" class="icon-button close" data-close aria-label="Close estimate dialog">×</button>
     <p class="kicker">Free estimates</p>
     <h2 id="estimate-title">A brighter space starts with a call.</h2>
-    <p>Choose your project type, then call or email Eyan.</p>
-    <label for="service">What can we help with?</label>
-    <select id="service"><option>Residential electrical</option><option>Commercial electrical</option><option>Panel work</option><option>Outlets &amp; switches</option><option>TV &amp; entertainment setup</option><option>Indoor lighting</option><option>Outdoor lighting</option></select>
-    <p id="prep">Have a few photos of the space and a short description of the work handy.</p>
-    <a class="pill" href="tel:+16312630792">Call 631-263-0792 <span aria-hidden="true">↗</span></a>
-    <a class="email-contact" href="mailto:Eyan@Arlingtonlightandpower.com">Email Eyan about your project ↗</a>
+    <p>Tell us about the project and send it to Eyan, or call.</p>
+    <form id="estimate-form" novalidate>
+      <label for="service">What can we help with?</label>
+      <select id="service" name="service"><option>Residential electrical</option><option>Commercial electrical</option><option>Panel work</option><option>Outlets &amp; switches</option><option>TV &amp; entertainment setup</option><option>Indoor lighting</option><option>Outdoor lighting</option></select>
+      <label for="est-name">Your name</label>
+      <input id="est-name" name="name" type="text" autocomplete="name" required aria-describedby="est-name-err">
+      <p class="field-error" id="est-name-err" hidden>Enter your name.</p>
+      <label for="est-email">Email</label>
+      <input id="est-email" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="est-email-err">
+      <p class="field-error" id="est-email-err" hidden>Enter a valid email address.</p>
+      <label for="est-address">Project address</label>
+      <input id="est-address" name="address" type="text" autocomplete="street-address" required aria-describedby="est-address-err">
+      <p class="field-error" id="est-address-err" hidden>Enter the address where the work is.</p>
+      <label for="est-notes">Notes <span class="optional">(optional)</span></label>
+      <textarea id="est-notes" name="notes" rows="4" placeholder="What you'd like done, timing, anything we should know."></textarea>
+      <p id="prep">Have a few photos of the space and a short description of the work handy.</p>
+      <div class="form-actions">
+        <button type="submit" class="pill submit-pill">Email my request <span aria-hidden="true">↗</span></button>
+        <a class="email-contact" href="tel:+16312630792">Or call 631-263-0792</a>
+      </div>
+      <p class="form-status" role="status" hidden>Your email app should open with the request ready to send. If it doesn&rsquo;t, email <a href="mailto:Eyan@Arlingtonlightandpower.com">Eyan@Arlingtonlightandpower.com</a> or call 631-263-0792.</p>
+    </form>
   </div>
 </dialog>
 </body>

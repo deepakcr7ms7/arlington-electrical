@@ -459,3 +459,43 @@ for (const button of document.querySelectorAll('[data-estimate]')) {
   });
 }
 service.addEventListener('change', updatePrep);
+
+// No server here: submitting opens the visitor's email app with every detail filled in.
+const estimateForm = document.querySelector('#estimate-form');
+const estimateStatus = estimateForm.querySelector('.form-status');
+const fieldChecks = {
+  'est-name': v => v.trim().length > 1,
+  'est-email': v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()),
+  'est-address': v => v.trim().length > 4,
+};
+function checkField(input) {
+  const ok = fieldChecks[input.id](input.value);
+  input.setAttribute('aria-invalid', String(!ok));
+  estimateForm.querySelector(`#${input.id}-err`).hidden = ok;
+  return ok;
+}
+for (const id of Object.keys(fieldChecks)) {
+  const input = estimateForm.querySelector('#' + id);
+  input.addEventListener('blur', () => { if (input.value || input.getAttribute('aria-invalid')) checkField(input); });
+  input.addEventListener('input', () => { if (input.getAttribute('aria-invalid') === 'true') checkField(input); });
+}
+estimateForm.addEventListener('submit', event => {
+  event.preventDefault();
+  const invalid = Object.keys(fieldChecks).map(id => estimateForm.querySelector('#' + id)).filter(input => !checkField(input));
+  if (invalid.length) { invalid[0].focus(); return; }
+  const data = new FormData(estimateForm);
+  const body = [
+    `Project type: ${data.get('service')}`,
+    `Name: ${data.get('name').trim()}`,
+    `Email: ${data.get('email').trim()}`,
+    `Project address: ${data.get('address').trim()}`,
+    '',
+    'Notes:',
+    (data.get('notes') || '').trim() || '(none)',
+  ].join('\n');
+  const subject = `Estimate request: ${data.get('service')}`;
+  estimateStatus.hidden = false;
+  estimateStatus.scrollIntoView({block: 'nearest'});
+  location.href = `mailto:Eyan@Arlingtonlightandpower.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+});
+booking.addEventListener('close', () => { estimateStatus.hidden = true; });
