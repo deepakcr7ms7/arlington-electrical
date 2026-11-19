@@ -60,7 +60,18 @@ if (!reducedMotion.matches) {
       video.pause();
     }
   });
-  video.src = video.dataset.src;
+  const heroClips = [
+    video.dataset.src,
+    'assets/videos/hero/firefly2.mp4',
+    'assets/videos/hero/bathroom-shot.mp4'
+  ];
+  let heroClipIndex = 0;
+  video.addEventListener('ended', () => {
+    heroClipIndex = (heroClipIndex + 1) % heroClips.length;
+    video.src = heroClips[heroClipIndex];
+    video.play().catch(() => {});
+  });
+  video.src = heroClips[0];
   video.play().catch(() => {
     if (!video.error) videoToggle.hidden = false;
   });
@@ -517,3 +528,24 @@ for (const button of document.querySelectorAll('[data-estimate]')) {
   });
 }
 service.addEventListener('change', updatePrep);
+
+
+document.querySelector('#estimate-form').addEventListener('submit', event => {
+  event.preventDefault();
+  const form = event.currentTarget;
+  if (!form.reportValidity()) return;
+  const fields = new FormData(form);
+  const body = [
+    'First name: ' + fields.get('firstName'),
+    'Last name: ' + fields.get('lastName'),
+    'Email: ' + fields.get('email'),
+    'Contact number: ' + fields.get('phone'),
+    'Service: ' + service.value,
+    '',
+    'Project details:',
+    fields.get('details')
+  ].join('\n');
+  location.href = 'mailto:Eyan@Arlingtonlightandpower.com?subject=' +
+    encodeURIComponent('Estimate request — ' + service.value) +
+    '&body=' + encodeURIComponent(body);
+});
