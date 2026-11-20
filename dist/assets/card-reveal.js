@@ -117,6 +117,7 @@ function initShowcase(root) {
   const previous = controls.querySelector('[data-step="-1"]');
   const next = controls.querySelector('[data-step="1"]');
   const count = controls.querySelector('.showcase-count');
+  const slider = controls.querySelector('input[type="range"]');
   const thumbs = root.querySelector('.showcase-thumbs');
   const status = root.querySelector('[data-showcase-status]');
 
@@ -137,7 +138,7 @@ function initShowcase(root) {
     tab.id = `showcase-tab-${i}`;
     tab.setAttribute('role', 'tab');
     tab.setAttribute('aria-controls', 'showcase-panel');
-    tab.innerHTML = `<span class="sw-label"></span><span class="sw-well" aria-hidden="true"><span class="sw-rocker"></span></span>`;
+    tab.innerHTML = `<span class="sw-label"></span>`;
     tab.querySelector('.sw-label').textContent = item.dataset.service;
     tab.addEventListener('click', () => selectService(i));
     return tab;
@@ -150,7 +151,7 @@ function initShowcase(root) {
   photo.tabIndex = 0;
   photo.setAttribute('role', 'group');
   photo.setAttribute('aria-roledescription', 'carousel');
-  photo.setAttribute('aria-label', 'Project photos. Swipe or use the up and down arrow keys to browse.');
+  photo.setAttribute('aria-label', 'Project photos. Use the photo controls or arrow keys to browse.');
 
   function loadPhotos(item) {
     for (const img of item.querySelectorAll('img')) img.loading = 'eager';
@@ -178,6 +179,9 @@ function initShowcase(root) {
     title.textContent = slideTitle(slide);
     description.textContent = slide.querySelector('.showcase-slide-copy p').textContent;
     count.textContent = `${index + 1} of ${slides.length}`;
+    slider.max = Math.max(1, slides.length - 1);
+    slider.value = index;
+    slider.setAttribute('aria-valuetext', `Photo ${index + 1} of ${slides.length}`);
     previous.setAttribute('aria-disabled', String(index === 0));
     next.setAttribute('aria-disabled', String(index === slides.length - 1));
     const single = slides.length < 2;
@@ -251,6 +255,7 @@ function initShowcase(root) {
 
   previous.addEventListener('click', () => setIndex(index - 1, {announce: true}));
   next.addEventListener('click', () => setIndex(index + 1, {announce: true}));
+  slider.addEventListener('input', () => setIndex(Number(slider.value), {announce: true}));
   photo.addEventListener('keydown', event => {
     const step = {ArrowUp: -1, PageUp: -1, ArrowDown: 1, PageDown: 1}[event.key];
     if (!step || slides.length < 2) return;
@@ -258,33 +263,26 @@ function initShowcase(root) {
     setIndex(index + step, {announce: true});
   });
 
-  // Vertical swipes on the photo browse projects; everywhere else the page scrolls as usual.
-  // (Mouse users have the buttons, thumbnails and arrow keys, and the wheel keeps scrolling the page.)
+  // Horizontal swipes browse photos; vertical gestures always scroll the page.
   let drag = null;
   photo.addEventListener('pointerdown', event => {
     if (event.pointerType === 'mouse' || !event.isPrimary || slides.length < 2) return;
-    drag = {id: event.pointerId, x: event.clientX, y: event.clientY, time: event.timeStamp, dy: 0, axis: ''};
+    drag = {id: event.pointerId, x: event.clientX, y: event.clientY, dx: 0, axis: ''};
   });
   photo.addEventListener('pointermove', event => {
     if (!drag || event.pointerId !== drag.id) return;
     const dx = event.clientX - drag.x;
     const dy = event.clientY - drag.y;
     if (!drag.axis && Math.hypot(dx, dy) > 8) drag.axis = Math.abs(dy) > Math.abs(dx) ? 'y' : 'x';
-    if (drag.axis !== 'y') return;
-    drag.dy = dy;
-    const pastEdge = (index === 0 && dy > 0) || (index === slides.length - 1 && dy < 0);
-    track.style.transition = 'none';
-    track.style.transform = `translateY(calc(${-index * 100}% + ${pastEdge ? dy * .25 : dy}px))`;
+    if (drag.axis === 'x') drag.dx = dx;
   });
   function endDrag(event, cancelled) {
     if (!drag || event.pointerId !== drag.id) return;
-    const {dy, axis, time} = drag;
+    const {dx, axis} = drag;
     drag = null;
     track.style.transition = '';
-    if (axis !== 'y') return;
-    const flick = Math.abs(dy) > 24 && Math.abs(dy) / Math.max(1, event.timeStamp - time) > .45;
-    const moved = !cancelled && (Math.abs(dy) > Math.min(56, photo.clientHeight * .15) || flick);
-    setIndex(index + (moved ? (dy < 0 ? 1 : -1) : 0), {announce: moved});
+    if (axis !== 'x' || cancelled || Math.abs(dx) < 36) return;
+    setIndex(index + (dx < 0 ? 1 : -1), {announce: true});
   }
   photo.addEventListener('pointerup', event => endDrag(event, false));
   photo.addEventListener('pointercancel', event => endDrag(event, true));
@@ -297,6 +295,7 @@ function initShowcase(root) {
   function measureCaption() {
     const t0 = title.textContent, d0 = description.textContent;
     caption.style.minHeight = '0';
+    if (matchMedia('(max-width: 879px)').matches) return;
     let max = 0;
     for (const slide of root.querySelectorAll('.showcase-slide')) {
       title.textContent = slide.querySelector('h4').textContent;

@@ -11,8 +11,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
   <script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.lightsReady)document.documentElement.classList.remove("js")},5000)</script>
-  <link rel="stylesheet" href="assets/lighting-scene.css?v=fb164d5">
-  <script src="assets/card-reveal.js?v=fb164d5" defer></script>
+  <link rel="stylesheet" href="assets/lighting-scene.css?v=mobile-reviews-1">
+  <script src="assets/card-reveal.js?v=mobile-reviews-1" defer></script>
 </head>
 <body>
 <a class="skip" href="#services">Skip to services</a>
@@ -187,9 +187,10 @@
           <p class="showcase-description"></p>
         </div>
         <div class="showcase-controls" hidden>
-          <button class="icon-button" type="button" data-step="-1" aria-label="Previous project"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg></button>
+          <button class="icon-button" type="button" data-step="-1" aria-label="Previous project">Previous</button>
           <span class="showcase-count"></span>
-          <button class="icon-button" type="button" data-step="1" aria-label="Next project"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+          <button class="icon-button" type="button" data-step="1" aria-label="Next project">Next</button>
+          <input class="showcase-slider" type="range" min="0" max="1" step="1" value="0" aria-label="Choose project photo">
         </div>
         <div class="showcase-thumbs" hidden></div>
         <p class="sr-only" role="status" data-showcase-status></p>
@@ -372,6 +373,19 @@
       <button type="button" class="pill" data-estimate>Talk through your project <span aria-hidden="true">↗</span></button>
     </div>
   </section>
+  <section class="reviews dark section-pad ruled-section" id="reviews" aria-labelledby="reviews-heading">
+    <div class="reviews-layout">
+      <div class="review-note review-note-one"><span>Tell us about</span><strong>Your project</strong></div>
+      <div class="review-center">
+        <p class="kicker">Customer feedback</p>
+        <h2 id="reviews-heading">Your experience matters<span class="work-dot">.</span></h2>
+        <p>Have we worked together? We’d love to hear how it went.</p>
+        <a class="pill light" href="mailto:Eyan@Arlingtonlightandpower.com?subject=Arlington%20Electrical%20customer%20review&amp;body=My%20experience%20with%20Arlington%20Electrical%3A%0A%0A">Leave a review</a>
+        <small>Your email app will open so you can send your feedback.</small>
+      </div>
+      <div class="review-note review-note-two"><span>Tell us about</span><strong>The finished work</strong></div>
+    </div>
+  </section>
   <div class="closing dark">
     <footer class="footer section-pad ruled-section" id="contact">
       <div class="footer-main">
@@ -386,7 +400,7 @@
 <dialog id="menu" class="menu-dialog dark" aria-labelledby="menu-title">
   <div class="menu-inner">
     <div class="menu-bar"><p id="menu-title" class="kicker">Arlington Electrical</p><button type="button" class="icon-button" data-close aria-label="Close menu">×</button></div>
-    <nav aria-label="Site menu"><a href="#work">Our work <span>↗</span></a><a href="#services">Services <span>↗</span></a><a href="#process">Our approach <span>↗</span></a><a href="#contact">Contact <span>↗</span></a></nav>
+    <nav aria-label="Site menu"><a href="#work">Our work <span>↗</span></a><a href="#services">Services <span>↗</span></a><a href="#process">Our approach <span>↗</span></a><a href="#reviews">Reviews <span>↗</span></a><a href="#contact">Contact <span>↗</span></a></nav>
     <button type="button" class="pill light" data-estimate>Get a free estimate <span aria-hidden="true">↗</span></button>
   </div>
 </dialog>

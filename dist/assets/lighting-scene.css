@@ -181,6 +181,45 @@ h2 { font-size: clamp(2rem, 4.2vw, 4.2rem); font-weight: 800; font-stretch: 112%
 .showcase:not([data-enhanced]) .showcase-slide img { position: relative; height: auto; aspect-ratio: 4 / 3; border-radius: 12px; }
 .showcase:not([data-enhanced]) .showcase-slide-copy { display: block; margin-top: 10px; }
 .showcase:not([data-enhanced]) .showcase-slide-copy p { margin-top: 4px; color: var(--muted); }
+
+/* Clear, conventional gallery navigation. The page can scroll over every photo. */
+.showcase-tabs { margin-bottom: 22px; }
+.showcase-tab { justify-content: center; min-height: 52px; padding: 12px; text-align: center; color: #dbe7f5; }
+.showcase-tab::before, .showcase-tab::after, .showcase-wire { display: none; }
+.sw-label { max-width: none; }
+.showcase-photo { touch-action: pan-y pinch-zoom; }
+.showcase-controls { display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px; align-items: center; }
+.showcase-controls .icon-button { width: 100%; min-height: 48px; height: auto; font-weight: 700; font-size: 1rem; }
+.showcase-slider { grid-column: 1 / -1; width: 100%; height: 44px; margin: 0; accent-color: var(--amber); cursor: pointer; }
+.showcase-controls.is-idle, .showcase-thumbs.is-idle { display: none; }
+@media (max-width: 879px) {
+  .showcase-tabs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0 0 16px; padding: 3px; gap: 8px; overflow: visible; }
+  .showcase-tab { font-size: .95rem; }
+  .showcase-tab:last-child { grid-column: 1 / -1; }
+  .showcase-body { grid-template-areas: "photo" "controls" "caption" "thumbs"; }
+  .showcase-photo { aspect-ratio: 4 / 3; max-height: 48svh; }
+  .showcase-controls { margin-top: 10px; }
+  .showcase-caption { margin-top: 12px; }
+  .call-bar { bottom: max(12px, env(safe-area-inset-bottom)); }
+  .footer { padding-bottom: 100px; }
+}
+.reviews-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.8fr) minmax(0, 1fr); gap: clamp(12px, 3vw, 48px); align-items: center; max-width: 1200px; margin: auto; }
+.review-center { text-align: center; }
+.review-center h2 { margin: 12px 0 18px; }
+.review-center p:not(.kicker) { color: var(--muted); line-height: 1.6; }
+.review-center .pill { margin: 24px auto 12px; min-width: 180px; }
+.review-center small { display: block; color: var(--muted); line-height: 1.5; }
+.review-note { padding: clamp(16px, 2vw, 28px); border: 1px solid #ffffff29; border-radius: 14px; background: var(--steel-900); box-shadow: 0 15px 30px #0003; }
+.review-note span { display: block; font-size: .9rem; color: var(--muted); margin-bottom: 8px; }
+.review-note strong { font-size: 1.2rem; }
+.review-note-one { transform: translateY(-22px) rotate(-3deg); }
+.review-note-two { transform: translateY(22px) rotate(3deg); }
+@media (max-width: 700px) {
+  .reviews-layout { grid-template-columns: 1fr 1fr; gap: 20px 10px; }
+  .review-center { grid-column: 1 / -1; grid-row: 1; }
+  .review-note { transform: none; }
+  .review-note strong { font-size: 1rem; }
+}
 /* Panel photos are shown whole, with the caption below them. */
 
 /* A breaker switch: open means on. */
